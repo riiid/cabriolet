@@ -6,5 +6,8 @@
     "convert-plan-executer",
     "convert-planner",
     "proto"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
 }
