@@ -1,0 +1,10 @@
+{
+  "name": "cabriolet",
+  "private": true,
+  "packageManager": "yarn@3.0.1",
+  "workspaces": [
+    "convert-plan-executer",
+    "convert-planner",
+    "proto"
+  ]
+}

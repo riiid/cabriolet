@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "rootDir": "gen",
+    "outDir": "lib",
+    "declaration": true,
+    "target": "esnext",
+    "module": "esnext",
+    "strict": false,
+  }
+}

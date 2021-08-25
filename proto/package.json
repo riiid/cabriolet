@@ -1,0 +1,17 @@
+{
+  "name": "@riiid/cabriolet-proto",
+  "packageManager": "yarn@3.0.1",
+  "scripts": {
+    "clean": "yarn clean:pollapo && yarn clean:pb && yarn clean:tsc",
+    "clean:pollapo": "rm -rf .pollapo",
+    "clean:pb": "rm -rf gen",
+    "clean:tsc": "rm -rf lib",
+    "build": "yarn build:pollapo && yarn build:pb && yarn build:tsc",
+    "build:pollapo": "pollapo install",
+    "build:pb": "pb gen ts -o gen --proto-path .pollapo --remove-ts-file-extension-in-import-statement riiid/interface-kvf-store/service.proto",
+    "build:tsc": "tsc"
+  },
+  "files": [
+    "/lib/**/*"
+  ]
+}

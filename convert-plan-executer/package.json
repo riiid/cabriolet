@@ -1,0 +1,7 @@
+{
+  "name": "@riiid/cabriolet-convert-plan-executer",
+  "packageManager": "yarn@3.0.1",
+  "dependencies": {
+    "isolated-vm": "^4.3.4"
+  }
+}
