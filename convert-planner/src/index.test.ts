@@ -6,7 +6,18 @@ import {
   getDefaultValue as getDefaultFormatValue,
 } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/Format";
 import { Type as ConvertPlan } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlan";
-import plan from ".";
+import plan, { ConvertPlannerError } from ".";
+
+test("foo bar fails", () => {
+  const schema: Schema = {
+    ...getDefaultSchemaValue(),
+    formats: [
+      { ...getDefaultFormatValue(), id: "foo" },
+      { ...getDefaultFormatValue(), id: "bar" },
+    ],
+  };
+  expect(() => plan(schema, "foo", "bar")).toThrow(ConvertPlannerError);
+});
 
 test("foo bar", () => {
   const schema: Schema = {
