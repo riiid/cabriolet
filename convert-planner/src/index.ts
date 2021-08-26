@@ -6,5 +6,9 @@ export default function plan(
   fromFormatId: string,
   toFormatId: string,
 ): ConvertPlan {
-  return { entries: [] };
+  return {
+    fromFormatId,
+    toFormatId,
+    entries: [],
+  };
 }
