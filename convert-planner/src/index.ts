@@ -8,7 +8,7 @@ interface Edge {
 }
 
 export class ConvertPlannerError extends Error {
-  constructor(msg, from, to) {
+  constructor(msg: string, from: string, to: string) {
     super(msg)
     this.name = `failed to find path "${from}" to "${to}"`
   }
