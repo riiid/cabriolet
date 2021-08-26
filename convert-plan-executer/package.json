@@ -2,6 +2,7 @@
   "name": "@riiid/cabriolet-convert-plan-executer",
   "packageManager": "yarn@3.0.1",
   "dependencies": {
+    "@riiid/cabriolet-proto": "workspace:proto",
     "isolated-vm": "^4.3.4"
   }
 }

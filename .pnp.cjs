@@ -2668,6 +2668,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./convert-plan-executer/",
           "packageDependencies": [
             ["@riiid/cabriolet-convert-plan-executer", "workspace:convert-plan-executer"],
+            ["@riiid/cabriolet-proto", "workspace:proto"],
             ["isolated-vm", "npm:4.3.4"]
           ],
           "linkType": "SOFT",

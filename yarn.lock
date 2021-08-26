@@ -1506,6 +1506,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@riiid/cabriolet-convert-plan-executer@workspace:convert-plan-executer"
   dependencies:
+    "@riiid/cabriolet-proto": "workspace:proto"
     isolated-vm: ^4.3.4
   languageName: unknown
   linkType: soft
