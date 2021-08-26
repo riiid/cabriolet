@@ -32,5 +32,9 @@ export default function plan(
 
   if (!(fromExists && toExists)) throw new ConvertPlannerError("The input does not exists in the convert graph", fromFormatId, toFormatId)
   
-  return { entries: [] };
+  return {
+    fromFormatId,
+    toFormatId,
+    entries: [],
+  };
 }

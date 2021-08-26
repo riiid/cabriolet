@@ -31,6 +31,8 @@ test("foo bar", () => {
     ],
   };
   expect(plan(schema, "foo", "bar")).toEqual<ConvertPlan>({
+    fromFormatId: "foo",
+    toFormatId: "bar",
     entries: [
       { value: { field: "convert", value: { formatId: "bar" } } },
     ],
@@ -51,6 +53,8 @@ test("foo bar baz", () => {
     ],
   };
   expect(plan(schema, "foo", "baz")).toEqual<ConvertPlan>({
+    fromFormatId: "foo",
+    toFormatId: "baz",
     entries: [
       { value: { field: "convert", value: { formatId: "bar" } } },
       { value: { field: "convert", value: { formatId: "baz" } } },
@@ -67,6 +71,8 @@ test("inherit", () => {
     ],
   };
   expect(plan(schema, "bar", "foo")).toEqual<ConvertPlan>({
+    fromFormatId: "bar",
+    toFormatId: "foo",
     entries: [
       { value: { field: "upcast", value: { formatId: "foo" } } },
     ],
@@ -86,16 +92,22 @@ test("inherit2", () => {
     ],
   };
   expect(plan(schema, "foo", "baz")).toEqual<ConvertPlan>({
+    fromFormatId: "foo",
+    toFormatId: "baz",
     entries: [
       { value: { field: "convert", value: { formatId: "baz" } } },
     ],
   });
   expect(plan(schema, "bar", "foo")).toEqual<ConvertPlan>({
+    fromFormatId: "bar",
+    toFormatId: "foo",
     entries: [
       { value: { field: "upcast", value: { formatId: "foo" } } },
     ],
   });
   expect(plan(schema, "bar", "baz")).toEqual<ConvertPlan>({
+    fromFormatId: "bar",
+    toFormatId: "baz",
     entries: [
       { value: { field: "upcast", value: { formatId: "foo" } } },
       { value: { field: "convert", value: { formatId: "baz" } } },
@@ -117,16 +129,22 @@ test("inherit3", () => {
     ],
   };
   expect(plan(schema, "foo", "baz")).toEqual<ConvertPlan>({
+    fromFormatId: "foo",
+    toFormatId: "baz",
     entries: [
       { value: { field: "convert", value: { formatId: "baz" } } },
     ],
   });
   expect(plan(schema, "bar", "foo")).toEqual<ConvertPlan>({
+    fromFormatId: "bar",
+    toFormatId: "foo",
     entries: [
       { value: { field: "upcast", value: { formatId: "foo" } } },
     ],
   });
   expect(plan(schema, "bar", "baz")).toEqual<ConvertPlan>({
+    fromFormatId: "bar",
+    toFormatId: "baz",
     entries: [
       { value: { field: "convert", value: { formatId: "baz" } } },
     ],
@@ -153,17 +171,23 @@ test("inherit4", () => {
     ],
   };
   expect(plan(schema, "bar", "baz")).toEqual<ConvertPlan>({
+    fromFormatId: "bar",
+    toFormatId: "baz",
     entries: [
       { value: { field: "convert", value: { formatId: "baz" } } },
     ],
   });
   expect(plan(schema, "bar", "qux")).toEqual<ConvertPlan>({
+    fromFormatId: "bar",
+    toFormatId: "qux",
     entries: [
       { value: { field: "convert", value: { formatId: "baz" } } },
       { value: { field: "convert", value: { formatId: "qux" } } },
     ],
   });
   expect(plan(schema, "bar", "quux")).toEqual<ConvertPlan>({
+    fromFormatId: "bar",
+    toFormatId: "quux",
     entries: [
       { value: { field: "convert", value: { formatId: "baz" } } },
       { value: { field: "convert", value: { formatId: "qux" } } },
