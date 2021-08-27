@@ -8,6 +8,7 @@ import {
 import { Type as ConvertPlan } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlan";
 import plan from ".";
 
+// (foo) >> (bar)
 test("foo bar", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
@@ -28,6 +29,7 @@ test("foo bar", () => {
   });
 });
 
+// (foo) >> (bar) >> (baz)
 test("foo bar baz", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
@@ -51,6 +53,9 @@ test("foo bar baz", () => {
   });
 });
 
+// (foo)
+//   ^
+// (bar)
 test("inherit", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
@@ -68,6 +73,9 @@ test("inherit", () => {
   });
 });
 
+// (foo) >> (baz)
+//   ^
+// (bar)
 test("inherit2", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
@@ -104,6 +112,9 @@ test("inherit2", () => {
   });
 });
 
+// (foo) >> (baz)
+//   ^       ^^
+// (bar)-----|
 test("inherit3", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
@@ -140,6 +151,11 @@ test("inherit3", () => {
   });
 });
 
+//   |--------------------------|
+//   |-----------------|        |
+// (foo)-----|         |        |
+//   ^       vv        vv       vv
+// (bar) >> (baz) >> (qux) >> (quux)
 test("inherit4", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
@@ -181,6 +197,33 @@ test("inherit4", () => {
       { value: { field: "convert", value: { formatId: "baz" } } },
       { value: { field: "convert", value: { formatId: "qux" } } },
       { value: { field: "convert", value: { formatId: "quux" } } },
+    ],
+  });
+});
+
+// (foo) >> (baz)
+//   ^        ^
+// (bar) >> (qux)
+test("inherit5", () => {
+  const schema: Schema = {
+    ...getDefaultSchemaValue(),
+    formats: [
+      { ...getDefaultFormatValue(), id: "foo" },
+      { ...getDefaultFormatValue(), id: "bar", parentFormatIds: ["foo"] },
+      { ...getDefaultFormatValue(), id: "baz" },
+      { ...getDefaultFormatValue(), id: "qux", parentFormatIds: ["baz"] },
+    ],
+    edges: [
+      { fromFormatId: "foo", toFormatId: "baz", converterId: "" },
+      { fromFormatId: "bar", toFormatId: "qux", converterId: "" },
+    ],
+  };
+  expect(plan(schema, "bar", "baz")).toEqual<ConvertPlan>({
+    fromFormatId: "bar",
+    toFormatId: "baz",
+    entries: [
+      { value: { field: "convert", value: { formatId: "qux" } } },
+      { value: { field: "upcast", value: { formatId: "baz" } } },
     ],
   });
 });
