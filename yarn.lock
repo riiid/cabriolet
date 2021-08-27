@@ -1506,12 +1506,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@riiid/cabriolet-convert-plan-executer@workspace:convert-plan-executer"
   dependencies:
+    "@babel/core": ^7.15.0
+    "@babel/preset-env": ^7.15.0
+    "@babel/preset-typescript": ^7.15.0
     "@riiid/cabriolet-proto": "workspace:proto"
     "@types/data-urls": ^2.0.1
+    "@types/jest": ^27.0.1
     "@types/node-fetch": ^2.5.12
     "@types/ssri": ^7.1.1
+    babel-jest: ^27.0.6
     data-urls: ^3.0.0
     isolated-vm: ^4.3.4
+    jest: ^27.0.6
     node-fetch: ^2.6.1
     ssri: ^8.0.1
   languageName: unknown

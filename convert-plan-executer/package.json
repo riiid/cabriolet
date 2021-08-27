@@ -1,6 +1,9 @@
 {
   "name": "@riiid/cabriolet-convert-plan-executer",
   "packageManager": "yarn@3.0.1",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "@riiid/cabriolet-proto": "workspace:proto",
     "data-urls": "^3.0.0",
@@ -9,8 +12,14 @@
     "ssri": "^8.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
     "@types/data-urls": "^2.0.1",
+    "@types/jest": "^27.0.1",
     "@types/node-fetch": "^2.5.12",
-    "@types/ssri": "^7.1.1"
+    "@types/ssri": "^7.1.1",
+    "babel-jest": "^27.0.6",
+    "jest": "^27.0.6"
   }
 }
