@@ -41,3 +41,7 @@ export function max<T extends Ord>(a: T, b: T): T {
         return a
     }
   }
+
+export function minFromList<T extends Ord>(list: T[]): T {
+  return list.reduce((prev, curr) => min(prev, curr));
+}
