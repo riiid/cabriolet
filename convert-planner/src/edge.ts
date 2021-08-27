@@ -1,6 +1,8 @@
 import { Cost } from "./cost";
 import { Ord, Ordering } from "./util/Ord";
 
+import { Type as ConvertPlanEntry } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlanEntry"
+
 export class Edge extends Ord {
   from: string;
   to: string;
@@ -25,5 +27,15 @@ export class Edge extends Ord {
   isUpcast(): boolean {
     return !this.isConverter();
   }
-}
 
+  convertToProto(): ConvertPlanEntry {
+    return {
+      value: {
+        field: this.isConverter() ? "convert" : "upcast",
+        value: {
+          formatId: this.to
+        }
+      }
+    }
+  }
+}

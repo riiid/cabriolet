@@ -1,8 +1,6 @@
 import { Type as Schema } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/Schema";
 import { Type as ConvertPlan } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlan";
 import { Type as ConverPlanEntry } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlanEntry";
-import { Type as Convert } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlanEntry/Convert";
-import { Type as Upcast } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlanEntry/Upcast";
 import { minFromList } from "./util/Ord";
 import { Cost } from "./cost";
 import { Edge } from "./edge";
@@ -27,17 +25,7 @@ export default function plan(
 
   const converterGraphEdges: Edge[] = [...upcasts, ...edges];
 
-  const path = findPath(converterGraphEdges, fromFormatId, toFormatId)
-  const entries: ConverPlanEntry[] = path.map(it => {
-    return {
-      value: {
-        field: it.isConverter() ? "convert" : "upcast",
-        value: {
-          formatId: it.to
-        }
-      }
-    }
-  })
+  const entries: ConverPlanEntry[] = findPath(converterGraphEdges, fromFormatId, toFormatId).map(it => it.convertToProto())
 
   return {
     fromFormatId,
