@@ -1,5 +1,8 @@
 import { Type as Schema } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/Schema";
 import { Type as ConvertPlan } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlan";
+import { Type as ConverPlanEntry } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlanEntry";
+import { Type as Convert } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlanEntry/Convert";
+import { Type as Upcast } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlanEntry/Upcast";
 import { minFromList } from "./util/Ord";
 import { Cost } from "./cost";
 import { Edge } from "./edge";
@@ -24,17 +27,22 @@ export default function plan(
 
   const converterGraphEdges: Edge[] = [...upcasts, ...edges];
 
-  const fromExists: boolean = converterGraphEdges.reduce((prev, curr) => prev || (curr.from === fromFormatId), false);
-  const toExists: boolean = converterGraphEdges.reduce((prev, curr) => prev || (curr.to === toFormatId), false);
-
-  if (!(fromExists && toExists)) throw new ConvertPlannerError("The input does not exists in the convert graph", fromFormatId, toFormatId);
-
-  findPath(converterGraphEdges, fromFormatId, toFormatId)
+  const path = findPath(converterGraphEdges, fromFormatId, toFormatId)
+  const entries: ConverPlanEntry[] = path.map(it => {
+    return {
+      value: {
+        field: it.isConverter() ? "convert" : "upcast",
+        value: {
+          formatId: it.to
+        }
+      }
+    }
+  })
 
   return {
     fromFormatId,
     toFormatId,
-    entries: [],
+    entries,
   };
 }
 

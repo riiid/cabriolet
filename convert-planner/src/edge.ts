@@ -16,5 +16,14 @@ export class Edge extends Ord {
   override compare(b: Edge): Ordering {
     return this.cost.compare(b.cost);
   }
+
+
+  isConverter(): boolean {
+    return this.cost.converterCost !== 0;
+  }
+
+  isUpcast(): boolean {
+    return !this.isConverter();
+  }
 }
 
