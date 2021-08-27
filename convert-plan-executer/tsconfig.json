@@ -6,6 +6,7 @@
     "declaration": true,
     "target": "esnext",
     "module": "esnext",
-    "strict": true
+    "strict": true,
+    "allowSyntheticDefaultImports": true
   }
 }
