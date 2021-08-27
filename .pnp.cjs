@@ -2669,7 +2669,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@riiid/cabriolet-convert-plan-executer", "workspace:convert-plan-executer"],
             ["@riiid/cabriolet-proto", "workspace:proto"],
-            ["isolated-vm", "npm:4.3.4"]
+            ["@types/data-urls", "npm:2.0.1"],
+            ["@types/node-fetch", "npm:2.5.12"],
+            ["@types/ssri", "npm:7.1.1"],
+            ["data-urls", "npm:3.0.0"],
+            ["isolated-vm", "npm:4.3.4"],
+            ["node-fetch", "npm:2.6.1"],
+            ["ssri", "npm:8.0.1"]
           ],
           "linkType": "SOFT",
         }]
@@ -2773,6 +2779,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/data-urls", [
+        ["npm:2.0.1", {
+          "packageLocation": "./.yarn/cache/@types-data-urls-npm-2.0.1-c66e306721-5b0444ae6a.zip/node_modules/@types/data-urls/",
+          "packageDependencies": [
+            ["@types/data-urls", "npm:2.0.1"],
+            ["@types/node", "npm:16.7.1"],
+            ["@types/whatwg-mimetype", "npm:2.1.1"],
+            ["@types/whatwg-url", "npm:8.2.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/graceful-fs", [
         ["npm:4.1.5", {
           "packageLocation": "./.yarn/cache/@types-graceful-fs-npm-4.1.5-91d62e1050-d076bb61f4.zip/node_modules/@types/graceful-fs/",
@@ -2832,6 +2850,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/node-fetch", [
+        ["npm:2.5.12", {
+          "packageLocation": "./.yarn/cache/@types-node-fetch-npm-2.5.12-e9530d4758-ad63c85ba6.zip/node_modules/@types/node-fetch/",
+          "packageDependencies": [
+            ["@types/node-fetch", "npm:2.5.12"],
+            ["@types/node", "npm:16.7.1"],
+            ["form-data", "npm:3.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/prettier", [
         ["npm:2.3.2", {
           "packageLocation": "./.yarn/cache/@types-prettier-npm-2.3.2-377cc404e1-c4313e1665.zip/node_modules/@types/prettier/",
@@ -2841,11 +2870,50 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/ssri", [
+        ["npm:7.1.1", {
+          "packageLocation": "./.yarn/cache/@types-ssri-npm-7.1.1-76e865e5af-0327eb212a.zip/node_modules/@types/ssri/",
+          "packageDependencies": [
+            ["@types/ssri", "npm:7.1.1"],
+            ["@types/node", "npm:16.7.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/stack-utils", [
         ["npm:2.0.1", {
           "packageLocation": "./.yarn/cache/@types-stack-utils-npm-2.0.1-867718ab70-205fdbe332.zip/node_modules/@types/stack-utils/",
           "packageDependencies": [
             ["@types/stack-utils", "npm:2.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/webidl-conversions", [
+        ["npm:6.1.1", {
+          "packageLocation": "./.yarn/cache/@types-webidl-conversions-npm-6.1.1-ce4d057614-bd0faad4df.zip/node_modules/@types/webidl-conversions/",
+          "packageDependencies": [
+            ["@types/webidl-conversions", "npm:6.1.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/whatwg-mimetype", [
+        ["npm:2.1.1", {
+          "packageLocation": "./.yarn/cache/@types-whatwg-mimetype-npm-2.1.1-557c33807e-c10093e0d3.zip/node_modules/@types/whatwg-mimetype/",
+          "packageDependencies": [
+            ["@types/whatwg-mimetype", "npm:2.1.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/whatwg-url", [
+        ["npm:8.2.1", {
+          "packageLocation": "./.yarn/cache/@types-whatwg-url-npm-8.2.1-718fa51acd-975987a9ca.zip/node_modules/@types/whatwg-url/",
+          "packageDependencies": [
+            ["@types/whatwg-url", "npm:8.2.1"],
+            ["@types/node", "npm:16.7.1"],
+            ["@types/webidl-conversions", "npm:6.1.1"]
           ],
           "linkType": "HARD",
         }]
@@ -3689,6 +3757,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["abab", "npm:2.0.5"],
             ["whatwg-mimetype", "npm:2.3.0"],
             ["whatwg-url", "npm:8.7.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/data-urls-npm-3.0.0-9db6f71d0e-ab28cf38a5.zip/node_modules/data-urls/",
+          "packageDependencies": [
+            ["data-urls", "npm:3.0.0"],
+            ["abab", "npm:2.0.5"],
+            ["whatwg-mimetype", "npm:2.3.0"],
+            ["whatwg-url", "npm:9.1.0"]
           ],
           "linkType": "HARD",
         }]
@@ -5488,6 +5566,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["node-fetch", [
+        ["npm:2.6.1", {
+          "packageLocation": "./.yarn/cache/node-fetch-npm-2.6.1-46c670dbc1-91075bedd5.zip/node_modules/node-fetch/",
+          "packageDependencies": [
+            ["node-fetch", "npm:2.6.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["node-gyp", [
         ["npm:8.2.0", {
           "packageLocation": "./.yarn/unplugged/node-gyp-npm-8.2.0-c783adf325/node_modules/node-gyp/",
@@ -6675,6 +6762,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["whatwg-url", "npm:8.7.0"],
             ["lodash", "npm:4.17.21"],
+            ["tr46", "npm:2.1.0"],
+            ["webidl-conversions", "npm:6.1.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:9.1.0", {
+          "packageLocation": "./.yarn/cache/whatwg-url-npm-9.1.0-0d89facbdb-cfee81bb7f.zip/node_modules/whatwg-url/",
+          "packageDependencies": [
+            ["whatwg-url", "npm:9.1.0"],
             ["tr46", "npm:2.1.0"],
             ["webidl-conversions", "npm:6.1.0"]
           ],

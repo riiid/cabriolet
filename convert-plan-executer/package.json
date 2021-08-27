@@ -3,6 +3,14 @@
   "packageManager": "yarn@3.0.1",
   "dependencies": {
     "@riiid/cabriolet-proto": "workspace:proto",
-    "isolated-vm": "^4.3.4"
+    "data-urls": "^3.0.0",
+    "isolated-vm": "^4.3.4",
+    "node-fetch": "^2.6.1",
+    "ssri": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/data-urls": "^2.0.1",
+    "@types/node-fetch": "^2.5.12",
+    "@types/ssri": "^7.1.1"
   }
 }
