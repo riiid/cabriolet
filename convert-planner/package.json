@@ -5,6 +5,9 @@
     "build": "tsc",
     "test": "jest"
   },
+  "files": [
+    "/lib/**/*"
+  ],
   "dependencies": {
     "@riiid/cabriolet-proto": "workspace:proto"
   },
