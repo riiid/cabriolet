@@ -2674,6 +2674,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@riiid/cabriolet-proto", "workspace:proto"],
             ["@types/data-urls", "npm:2.0.1"],
             ["@types/jest", "npm:27.0.1"],
+            ["@types/node", "npm:16.7.4"],
             ["@types/node-fetch", "npm:2.5.12"],
             ["@types/ssri", "npm:7.1.1"],
             ["babel-jest", "virtual:3b16a1b949cbd526997f38d23a5d615dc5132bd773252ff889294be3df44b66b5d9139497e56f171f3d280a6bd8031cb4e50bea59f1ac4bc5b0dc79d59e0464d#npm:27.0.6"],
@@ -2697,6 +2698,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-typescript", "virtual:3b16a1b949cbd526997f38d23a5d615dc5132bd773252ff889294be3df44b66b5d9139497e56f171f3d280a6bd8031cb4e50bea59f1ac4bc5b0dc79d59e0464d#npm:7.15.0"],
             ["@riiid/cabriolet-proto", "workspace:proto"],
             ["@types/jest", "npm:27.0.1"],
+            ["@types/node", "npm:16.7.4"],
             ["babel-jest", "virtual:3b16a1b949cbd526997f38d23a5d615dc5132bd773252ff889294be3df44b66b5d9139497e56f171f3d280a6bd8031cb4e50bea59f1ac4bc5b0dc79d59e0464d#npm:27.0.6"],
             ["jest", "virtual:3b16a1b949cbd526997f38d23a5d615dc5132bd773252ff889294be3df44b66b5d9139497e56f171f3d280a6bd8031cb4e50bea59f1ac4bc5b0dc79d59e0464d#npm:27.0.6"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"]
@@ -2855,6 +2857,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-node-npm-16.7.1-ed9db6a0db-fcf1a2c7b1.zip/node_modules/@types/node/",
           "packageDependencies": [
             ["@types/node", "npm:16.7.1"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:16.7.4", {
+          "packageLocation": "./.yarn/cache/@types-node-npm-16.7.4-ae3b97cd09-da7813e6c3.zip/node_modules/@types/node/",
+          "packageDependencies": [
+            ["@types/node", "npm:16.7.4"]
           ],
           "linkType": "HARD",
         }]
