@@ -10,20 +10,14 @@
   ],
   "dependencies": {
     "@riiid/cabriolet-proto": "workspace:proto",
-    "data-urls": "^3.0.0",
-    "isolated-vm": "^4.3.4",
-    "node-fetch": "^2.6.1",
-    "ssri": "^8.0.1"
+    "@riiid/cabriolet-schema": "workspace:schema",
+    "isolated-vm": "^4.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-typescript": "^7.15.0",
-    "@types/data-urls": "^2.0.1",
     "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.4",
-    "@types/node-fetch": "^2.5.12",
-    "@types/ssri": "^7.1.1",
     "babel-jest": "^27.0.6",
     "jest": "^27.0.6",
     "typescript": "4.3.5"

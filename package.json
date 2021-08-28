@@ -5,7 +5,8 @@
   "workspaces": [
     "convert-plan-executer",
     "convert-planner",
-    "proto"
+    "proto",
+    "schema"
   ],
   "devDependencies": {
     "typescript": "4.3.5"

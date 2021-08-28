@@ -1,8 +1,10 @@
 import { Type as Schema } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/Schema";
 import { Type as ConvertPlan } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlan";
+import { getGetValidatorsFn } from "@riiid/cabriolet-schema/lib/validator";
+import { getGetConverterFn } from "@riiid/cabriolet-schema/lib/converter";
 import { iterConcretePlan, ConcretePlanEntry } from "./concrete-plan";
-import { getGetValidatorsFn, getValidateFn } from "./validator";
-import { getGetConverterFn, getConvertFn } from "./converter";
+import { getValidateFn } from "./validator";
+import { getConvertFn } from "./converter";
 
 export class ExecConvertPlanError extends Error {
   constructor(
