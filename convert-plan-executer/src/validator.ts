@@ -1,25 +1,35 @@
 import { Type as Schema } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/Schema";
-import { Type as Format } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/Format";
+import { Type as Validator } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/Validator";
+import { arrToMap } from "./misc";
+import { getSrcData } from "./src";
+import { u8sInVoidOut } from "./program";
 
-export interface GetValidatorIdsFn {
-  (formatId: string): string[];
+export interface GetValidatorsFn {
+  (formatId: string): Validator[];
 }
-export class GetValidatorIdsFnError extends Error {}
-export function getGetValidatorIdsFn(schema: Schema): GetValidatorIdsFn {
-  type Formats = { [formatId: string]: Format };
-  const formats: Formats = schema.formats.reduce(
-    (formats, format) => {
-      formats[format.id] = format;
-      return formats;
-    },
-    {} as Formats,
-  );
-  return function getValidatorIdsFn(formatId) {
+export class GetValidatorsFnError extends Error {}
+export function getGetValidatorsFn(schema: Schema): GetValidatorsFn {
+  const formats = arrToMap(schema.formats, (format) => format.id);
+  const validators = arrToMap(schema.validators, (validator) => validator.id);
+  return function getValidatorsFn(formatId) {
     if (!(formatId in formats)) {
-      throw new GetValidatorIdsFnError("invalid format id: " + formatId);
+      throw new GetValidatorsFnError("invalid format id: " + formatId);
     }
     const format = formats[formatId];
-    const validatorIds = format.validatorIds;
-    return validatorIds;
+    return format.validatorIds.map((id) => validators[id]);
+  };
+}
+
+export interface ValidateFn {
+  (input: Uint8Array): Promise<void>;
+}
+export async function getValidateFn(
+  validator: Validator,
+  getSrcDataFn: typeof getSrcData = getSrcData
+): Promise<ValidateFn> {
+  const srcData = await getSrcDataFn(validator);
+  const js = new TextDecoder("utf-8").decode(srcData);
+  return async function validate(input) {
+    return await u8sInVoidOut(js, input);
   };
 }
