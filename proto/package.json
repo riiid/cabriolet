@@ -13,5 +13,8 @@
   },
   "files": [
     "/lib/**/*"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "4.3.5"
+  }
 }

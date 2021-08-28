@@ -2681,7 +2681,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["isolated-vm", "npm:4.3.4"],
             ["jest", "virtual:3b16a1b949cbd526997f38d23a5d615dc5132bd773252ff889294be3df44b66b5d9139497e56f171f3d280a6bd8031cb4e50bea59f1ac4bc5b0dc79d59e0464d#npm:27.0.6"],
             ["node-fetch", "npm:2.6.1"],
-            ["ssri", "npm:8.0.1"]
+            ["ssri", "npm:8.0.1"],
+            ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"]
           ],
           "linkType": "SOFT",
         }]
@@ -2697,7 +2698,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@riiid/cabriolet-proto", "workspace:proto"],
             ["@types/jest", "npm:27.0.1"],
             ["babel-jest", "virtual:3b16a1b949cbd526997f38d23a5d615dc5132bd773252ff889294be3df44b66b5d9139497e56f171f3d280a6bd8031cb4e50bea59f1ac4bc5b0dc79d59e0464d#npm:27.0.6"],
-            ["jest", "virtual:3b16a1b949cbd526997f38d23a5d615dc5132bd773252ff889294be3df44b66b5d9139497e56f171f3d280a6bd8031cb4e50bea59f1ac4bc5b0dc79d59e0464d#npm:27.0.6"]
+            ["jest", "virtual:3b16a1b949cbd526997f38d23a5d615dc5132bd773252ff889294be3df44b66b5d9139497e56f171f3d280a6bd8031cb4e50bea59f1ac4bc5b0dc79d59e0464d#npm:27.0.6"],
+            ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"]
           ],
           "linkType": "SOFT",
         }]
@@ -2706,7 +2708,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         ["workspace:proto", {
           "packageLocation": "./proto/",
           "packageDependencies": [
-            ["@riiid/cabriolet-proto", "workspace:proto"]
+            ["@riiid/cabriolet-proto", "workspace:proto"],
+            ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"]
           ],
           "linkType": "SOFT",
         }]

@@ -1520,6 +1520,7 @@ __metadata:
     jest: ^27.0.6
     node-fetch: ^2.6.1
     ssri: ^8.0.1
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
@@ -1534,12 +1535,15 @@ __metadata:
     "@types/jest": ^27.0.1
     babel-jest: ^27.0.6
     jest: ^27.0.6
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
 "@riiid/cabriolet-proto@workspace:proto":
   version: 0.0.0-use.local
   resolution: "@riiid/cabriolet-proto@workspace:proto"
+  dependencies:
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
@@ -2111,7 +2115,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "cabriolet@workspace:."
   dependencies:
-    typescript: ^4.3.5
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
@@ -4898,7 +4902,7 @@ fsevents@^2.3.2:
   languageName: node
   linkType: hard
 
-typescript@^4.3.5:
+typescript@4.3.5:
   version: 4.3.5
   resolution: "typescript@npm:4.3.5"
   bin:
@@ -4908,7 +4912,7 @@ typescript@^4.3.5:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.3.5#~builtin<compat/typescript>":
+"typescript@patch:typescript@4.3.5#~builtin<compat/typescript>":
   version: 4.3.5
   resolution: "typescript@patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"
   bin:
