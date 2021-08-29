@@ -25,4 +25,8 @@ export class Cost extends Ord {
       }
     }
   }
+
+  static get Infinity(): Cost {
+    return new Cost(Infinity, Infinity);
+  }
 }

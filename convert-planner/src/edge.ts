@@ -3,9 +3,11 @@ import { Ord, Ordering } from "./util/Ord";
 
 import { Type as ConvertPlanEntry } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlanEntry"
 
+export type FormatId = string
+
 export class Edge extends Ord {
-  from: string;
-  to: string;
+  from: FormatId;
+  to: FormatId;
   cost: Cost;
 
   constructor(from: string, to: string, cost: Cost) {
@@ -38,4 +40,8 @@ export class Edge extends Ord {
       }
     }
   }
+}
+
+export function findAdjEdges(graph: Edge[], nodeId: string): Edge[] {
+  return graph.filter(it => it.from === nodeId)
 }

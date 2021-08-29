@@ -45,3 +45,17 @@ export function max<T extends Ord>(a: T, b: T): T {
 export function minFromList<T extends Ord>(list: T[]): T {
   return list.reduce((prev, curr) => min(prev, curr));
 }
+
+export function minFromMap<S, T extends Ord>(map: Map<S, T>): { key: S, value: T } {
+  let min: { key: S, value: T } = undefined;
+  map.forEach((value, key) => {
+    if (value.isSmaller(min[1])) {
+      min = {
+        key,
+        value,
+      }
+    }
+  })
+
+  return min
+}
