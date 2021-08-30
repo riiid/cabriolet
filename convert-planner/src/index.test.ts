@@ -61,7 +61,7 @@ test("inherit", () => {
     ...getDefaultSchemaValue(),
     formats: [
       { ...getDefaultFormatValue(), id: "foo" },
-      { ...getDefaultFormatValue(), id: "bar", parentFormatIds: ["foo"] },
+      { ...getDefaultFormatValue(), id: "bar", parentFormatId: "foo" },
     ],
   };
   expect(plan(schema, "bar", "foo")).toEqual<ConvertPlan>({
@@ -81,7 +81,7 @@ test("inherit2", () => {
     ...getDefaultSchemaValue(),
     formats: [
       { ...getDefaultFormatValue(), id: "foo" },
-      { ...getDefaultFormatValue(), id: "bar", parentFormatIds: ["foo"] },
+      { ...getDefaultFormatValue(), id: "bar", parentFormatId: "foo" },
       { ...getDefaultFormatValue(), id: "baz" },
     ],
     edges: [
@@ -120,7 +120,7 @@ test("inherit3", () => {
     ...getDefaultSchemaValue(),
     formats: [
       { ...getDefaultFormatValue(), id: "foo" },
-      { ...getDefaultFormatValue(), id: "bar", parentFormatIds: ["foo"] },
+      { ...getDefaultFormatValue(), id: "bar", parentFormatId: "foo" },
       { ...getDefaultFormatValue(), id: "baz" },
     ],
     edges: [
@@ -161,7 +161,7 @@ test("inherit4", () => {
     ...getDefaultSchemaValue(),
     formats: [
       { ...getDefaultFormatValue(), id: "foo" },
-      { ...getDefaultFormatValue(), id: "bar", parentFormatIds: ["foo"] },
+      { ...getDefaultFormatValue(), id: "bar", parentFormatId: "foo" },
       { ...getDefaultFormatValue(), id: "baz" },
       { ...getDefaultFormatValue(), id: "qux" },
       { ...getDefaultFormatValue(), id: "quux" },
@@ -209,9 +209,9 @@ test("inherit5", () => {
     ...getDefaultSchemaValue(),
     formats: [
       { ...getDefaultFormatValue(), id: "foo" },
-      { ...getDefaultFormatValue(), id: "bar", parentFormatIds: ["foo"] },
+      { ...getDefaultFormatValue(), id: "bar", parentFormatId: "foo" },
       { ...getDefaultFormatValue(), id: "baz" },
-      { ...getDefaultFormatValue(), id: "qux", parentFormatIds: ["baz"] },
+      { ...getDefaultFormatValue(), id: "qux", parentFormatId: "baz" },
     ],
     edges: [
       { fromFormatId: "foo", toFormatId: "baz", converterId: "" },
