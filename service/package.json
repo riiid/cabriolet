@@ -1,0 +1,17 @@
+{
+  "name": "@riiid/cabriolet-service",
+  "packageManager": "yarn@3.0.1",
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "/lib/**/*"
+  ],
+  "dependencies": {
+    "@riiid/cabriolet-proto": "workspace:proto",
+    "@riiid/cabriolet-schema": "workspace:schema"
+  },
+  "devDependencies": {
+    "typescript": "4.3.5"
+  }
+}

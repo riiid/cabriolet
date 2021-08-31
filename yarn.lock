@@ -1560,6 +1560,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@riiid/cabriolet-service@workspace:service":
+  version: 0.0.0-use.local
+  resolution: "@riiid/cabriolet-service@workspace:service"
+  dependencies:
+    "@riiid/cabriolet-proto": "workspace:proto"
+    "@riiid/cabriolet-schema": "workspace:schema"
+    typescript: 4.3.5
+  languageName: unknown
+  linkType: soft
+
 "@sinonjs/commons@npm:^1.7.0":
   version: 1.8.3
   resolution: "@sinonjs/commons@npm:1.8.3"

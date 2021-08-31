@@ -4,16 +4,17 @@ import * as kvf from "@riiid/cabriolet-proto/lib/messages/riiid/kvf";
 const alphabet =
   "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 const nanoid = customAlphabet(alphabet, 10);
-const newFormatId = () => "fmt_" + nanoid();
-const newValidatorId = () => "vld_" + nanoid();
-const newConverterId = () => "cvt_" + nanoid();
+export const newFormatId = () => "fmt_" + nanoid();
+export const newValidatorId = () => "vld_" + nanoid();
+export const newConverterId = () => "cvt_" + nanoid();
 
 export function createFormat(
   schema: kvf.Schema,
   { formatName, formatDescription }: kvf.CreateFormatRequest,
+  formatId = newFormatId(),
 ): kvf.Schema {
   const format = {
-    id: newFormatId(),
+    id: formatId,
     name: formatName,
     description: formatDescription,
     parentFormatId: undefined,
@@ -77,9 +78,10 @@ export function appendValidator(
     validatorSrc,
     validatorIntegrity,
   }: kvf.AppendValidatorRequest,
+  validatorId = newValidatorId(),
 ): kvf.Schema {
   const validator = {
-    id: newValidatorId(),
+    id: validatorId,
     name: validatorName,
     description: validatorDescription,
     src: validatorSrc,
@@ -129,9 +131,10 @@ export function createConverter(
     converterSrc,
     converterIntegrity,
   }: kvf.CreateConverterRequest,
+  converterId = newConverterId(),
 ): kvf.Schema {
   const converter = {
-    id: newConverterId(),
+    id: converterId,
     name: converterName,
     description: converterDescription,
     src: converterSrc,

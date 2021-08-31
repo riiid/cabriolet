@@ -37,6 +37,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {
         "name": "@riiid/cabriolet-schema",
         "reference": "workspace:schema"
+      },
+      {
+        "name": "@riiid/cabriolet-service",
+        "reference": "workspace:service"
       }
     ],
     "enableTopLevelFallback": true,
@@ -46,6 +50,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@riiid/cabriolet-convert-planner", ["workspace:convert-planner"]],
       ["@riiid/cabriolet-proto", ["workspace:proto"]],
       ["@riiid/cabriolet-schema", ["workspace:schema"]],
+      ["@riiid/cabriolet-service", ["workspace:service"]],
       ["cabriolet", ["workspace:."]]
     ],
     "fallbackPool": [
@@ -2729,6 +2734,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["nanoid", "npm:3.1.25"],
             ["node-fetch", "npm:2.6.1"],
             ["ssri", "npm:8.0.1"],
+            ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@riiid/cabriolet-service", [
+        ["workspace:service", {
+          "packageLocation": "./service/",
+          "packageDependencies": [
+            ["@riiid/cabriolet-service", "workspace:service"],
+            ["@riiid/cabriolet-proto", "workspace:proto"],
+            ["@riiid/cabriolet-schema", "workspace:schema"],
             ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"]
           ],
           "linkType": "SOFT",
