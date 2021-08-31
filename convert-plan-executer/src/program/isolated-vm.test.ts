@@ -1,4 +1,4 @@
-import { u8sInU8sOut, u8sInVoidOut } from "./program";
+import { u8sInU8sOut, u8sInVoidOut } from "./isolated-vm";
 
 test("u8sInU8sOut", async () => {
   const out = await u8sInU8sOut(
