@@ -2,4 +2,4 @@ deps:
   - riiid/interface-kvf-store@main
 root:
   lock:
-    riiid/interface-kvf-store@main: 10f6f6dcc5c21291b53391f9a9ff987d22fb09cf
+    riiid/interface-kvf-store@main: f3749fd8ab95ec6fdc29d445aeb0bca2719ff0fd

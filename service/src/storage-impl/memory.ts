@@ -23,8 +23,8 @@ export default function createMemoryStorage(): Storage {
       storage.delete(key);
       return {};
     },
-    async keys() {
-      const keys = [...storage.keys()];
+    async keys({ prefix }) {
+      const keys = [...storage.keys()].filter((key) => key.startsWith(prefix));
       return { keys };
     },
   };
