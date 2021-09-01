@@ -19,10 +19,12 @@ export function createService({
     ...storage,
     ...registry,
     async convert({ key, toFormatId }) {
+      const {
+        value: input,
+        formatId: fromFormatId,
+      } = await storage.get({ key });
       const { schema } = await registry.getSchema({});
-      const { formatId: fromFormatId } = await storage.getFormatId({ key });
       const convertPlan = convertPlanner(schema!, fromFormatId, toFormatId);
-      const { value: input } = await storage.get({ key });
       const output = await convertPlanExecuter(schema!, convertPlan, input);
       return { value: output };
     },
