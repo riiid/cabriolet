@@ -20,7 +20,7 @@ export default function plan(
 ): ConvertPlan {
   const edges: Edge[] = schema.edges.map(it => new Edge(it.fromFormatId, it.toFormatId, new Cost(1, 0)));
   const upcasts: Edge[] = schema.formats.flatMap(it => {
-    return it.parentFormatIds.map(parentFormatId => new Edge(it.id, parentFormatId, new Cost(0, 1)));
+    return new Edge(it.id, it.parentFormatId, new Cost(0, 1));
   });
 
   const converterGraphEdges: Edge[] = [...upcasts, ...edges];
@@ -35,48 +35,58 @@ export default function plan(
 }
 
 function findPath(graph: Edge[], from: FormatId, to: FormatId): Edge[] {
-  const visited: FormatId[] = [];
-  const unvisited: FormatId[] = [];
-  let dist = new Map<FormatId, number>();
-  let prev = new Map<FormatId, number>();
+  const visited: Edge[] = [];
+  const unvisited: Edge[] = [];
+  let dist = new Map<FormatId, Cost>();
+  let prev = new Map<FormatId, FormatId>();
 
   graph.forEach(it => {
-    dist.set(it.to, Infinity);
+    dist.set(it.to, Cost.Infinity);
     prev.set(it.to, undefined);
-    unvisited.push(it.to);
+    unvisited.push(it);
   })
 
-  dist.set(from, 0);
+  dist.set(from, new Cost(0, 0));
+
+  console.error(`graph: ${JSON.stringify(graph)}`)
+  console.error(`from: ${from}, to: ${to}`)
+  console.error(`visited: ${visited}`)
+  console.error(`unvisited: ${JSON.stringify(unvisited)}`)
+  console.error(`dist: ${JSON.stringify(dist)}`)
+  console.error(`prev: ${JSON.stringify(prev)}`)
 
   while(unvisited.length !== 0) {
-    const minFormatId = minFromNumMap(dist);
+    const minFormatId = minFromMap(dist);
+    const min = graph.find(it => it.to === minFormatId.key)
 
-    visited.push(minFormatId.key);
+    visited.push(min);
 
-    const visitedFormatIndex = unvisited.indexOf(minFormatId.key);
-    if (visitedFormatIndex != -1) {
+    const visitedFormatIndex = unvisited.indexOf(min);
+    if (visitedFormatIndex !== -1) {
       unvisited.splice(visitedFormatIndex, 1)
     }
 
+    if (minFormatId.key === to) {
+      break;
+    }
 
+    findAdjEdges(graph, minFormatId.key).forEach(it => {
+      const alt = dist.get(minFormatId.key).add(it.cost);
+      if (alt < dist.get(it.to)) {
+        dist.set(it.to, alt);
+        prev.set(it.to, minFormatId.key);
+      }
+    });
   }
 
-  let retVal: Edge[];
-
-  return retVal;
-}
-
-function minFromNumMap<T>(map: Map<T, number>): { key: T, value: number } {
-  let min: { key: T, value: number };
-  map.forEach((value, key) => {
-    if (value < min.value) {
-      min = {
-        key,
-        value,
-      }
+  const S = [];
+  let u = to
+  if (prev.get(u) !== undefined) {
+    while (u !== undefined) {
+      S.push(u)
+      u = prev.get(u)
     }
-  });
+  }
 
-  return min;
+  return S;
 }
-

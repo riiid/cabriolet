@@ -2,6 +2,7 @@ export enum Ordering {
   LT,
   EQ,
   GT,
+  UNDEF,
 }
 
 export abstract class Ord {
@@ -28,6 +29,8 @@ export function min<T extends Ord>(a: T, b: T): T {
         return b
       case Ordering.EQ:
         return a
+      case Ordering.UNDEF:
+        return a
     }
 }
 
@@ -39,6 +42,8 @@ export function max<T extends Ord>(a: T, b: T): T {
         return b
       case Ordering.EQ:
         return a
+      case Ordering.UNDEF:
+        return a
     }
   }
 
@@ -47,7 +52,7 @@ export function minFromList<T extends Ord>(list: T[]): T {
 }
 
 export function minFromMap<S, T extends Ord>(map: Map<S, T>): { key: S, value: T } {
-  let min: { key: S, value: T } = undefined;
+  let min: { key: S, value: T } = map.entries().next().value;
   map.forEach((value, key) => {
     if (value.isSmaller(min.value)) {
       min = {

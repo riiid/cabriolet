@@ -10,7 +10,14 @@ export class Cost extends Ord {
     this.upcastCost = upcastCost;
   }
 
+  add(b: Cost): Cost {
+    return new Cost(this.converterCost + b.converterCost, this.upcastCost + b.upcastCost);
+  }
+
   override compare(b: Cost): Ordering {
+    if (b === undefined) {
+      return Ordering.UNDEF;
+    }
     if (this.converterCost < b.converterCost) {
       return Ordering.LT;
     } else if (this.converterCost > b.converterCost) {
@@ -30,3 +37,4 @@ export class Cost extends Ord {
     return new Cost(Infinity, Infinity);
   }
 }
+

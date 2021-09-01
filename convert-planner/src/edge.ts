@@ -42,6 +42,6 @@ export class Edge extends Ord {
   }
 }
 
-export function findAdjEdges(graph: Edge[], nodeId: string): Edge[] {
+export function findAdjEdges(graph: Edge[], nodeId: FormatId): Edge[] {
   return graph.filter(it => it.from === nodeId)
 }
