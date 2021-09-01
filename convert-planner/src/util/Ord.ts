@@ -49,13 +49,14 @@ export function minFromList<T extends Ord>(list: T[]): T {
 export function minFromMap<S, T extends Ord>(map: Map<S, T>): { key: S, value: T } {
   let min: { key: S, value: T } = undefined;
   map.forEach((value, key) => {
-    if (value.isSmaller(min[1])) {
+    if (value.isSmaller(min.value)) {
       min = {
         key,
         value,
       }
     }
-  })
+  });
 
-  return min
+  return min;
 }
+

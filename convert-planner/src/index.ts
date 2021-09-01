@@ -3,6 +3,7 @@ import { Type as ConvertPlan } from "@riiid/cabriolet-proto/lib/messages/riiid/k
 import { Type as ConverPlanEntry } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlanEntry";
 import { Cost } from "./cost";
 import { Edge, findAdjEdges, FormatId } from "./edge";
+import { minFromMap } from "./util/Ord";
 
 
 export class ConvertPlannerError extends Error {
@@ -34,24 +35,48 @@ export default function plan(
 }
 
 function findPath(graph: Edge[], from: FormatId, to: FormatId): Edge[] {
-  const visited: Edge[] = [];
-  const unvisited = Edge[] = [];
+  const visited: FormatId[] = [];
+  const unvisited: FormatId[] = [];
   let dist = new Map<FormatId, number>();
   let prev = new Map<FormatId, number>();
 
   graph.forEach(it => {
     dist.set(it.to, Infinity);
     prev.set(it.to, undefined);
-    unvisited.push(it);
+    unvisited.push(it.to);
   })
 
   dist.set(from, 0);
 
   while(unvisited.length !== 0) {
+    const minFormatId = minFromNumMap(dist);
+
+    visited.push(minFormatId.key);
+
+    const visitedFormatIndex = unvisited.indexOf(minFormatId.key);
+    if (visitedFormatIndex != -1) {
+      unvisited.splice(visitedFormatIndex, 1)
+    }
+
+
   }
 
   let retVal: Edge[];
 
   return retVal;
+}
+
+function minFromNumMap<T>(map: Map<T, number>): { key: T, value: number } {
+  let min: { key: T, value: number };
+  map.forEach((value, key) => {
+    if (value < min.value) {
+      min = {
+        key,
+        value,
+      }
+    }
+  });
+
+  return min;
 }
 
