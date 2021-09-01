@@ -5,6 +5,7 @@
   "workspaces": [
     "convert-plan-executer",
     "convert-planner",
+    "dashboard",
     "proto",
     "schema",
     "service"
