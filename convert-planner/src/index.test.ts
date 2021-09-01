@@ -19,6 +19,7 @@ test("foo bar fails", () => {
   expect(() => plan(schema, "foo", "bar")).toThrow(ConvertPlannerError);
 });
 
+// (foo) >> (bar)
 test("foo bar", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
@@ -39,6 +40,7 @@ test("foo bar", () => {
   });
 });
 
+// (foo) >> (bar) >> (baz)
 test("foo bar baz", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
@@ -62,12 +64,15 @@ test("foo bar baz", () => {
   });
 });
 
+// (foo)
+//   ^
+// (bar)
 test("inherit", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
     formats: [
       { ...getDefaultFormatValue(), id: "foo" },
-      { ...getDefaultFormatValue(), id: "bar", parentFormatIds: ["foo"] },
+      { ...getDefaultFormatValue(), id: "bar", parentFormatId: "foo" },
     ],
   };
   expect(plan(schema, "bar", "foo")).toEqual<ConvertPlan>({
@@ -79,12 +84,15 @@ test("inherit", () => {
   });
 });
 
+// (foo) >> (baz)
+//   ^
+// (bar)
 test("inherit2", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
     formats: [
       { ...getDefaultFormatValue(), id: "foo" },
-      { ...getDefaultFormatValue(), id: "bar", parentFormatIds: ["foo"] },
+      { ...getDefaultFormatValue(), id: "bar", parentFormatId: "foo" },
       { ...getDefaultFormatValue(), id: "baz" },
     ],
     edges: [
@@ -115,12 +123,15 @@ test("inherit2", () => {
   });
 });
 
+// (foo) >> (baz)
+//   ^       ^^
+// (bar)-----|
 test("inherit3", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
     formats: [
       { ...getDefaultFormatValue(), id: "foo" },
-      { ...getDefaultFormatValue(), id: "bar", parentFormatIds: ["foo"] },
+      { ...getDefaultFormatValue(), id: "bar", parentFormatId: "foo" },
       { ...getDefaultFormatValue(), id: "baz" },
     ],
     edges: [
@@ -151,12 +162,17 @@ test("inherit3", () => {
   });
 });
 
+//   |--------------------------|
+//   |-----------------|        |
+// (foo)-----|         |        |
+//   ^       vv        vv       vv
+// (bar) >> (baz) >> (qux) >> (quux)
 test("inherit4", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
     formats: [
       { ...getDefaultFormatValue(), id: "foo" },
-      { ...getDefaultFormatValue(), id: "bar", parentFormatIds: ["foo"] },
+      { ...getDefaultFormatValue(), id: "bar", parentFormatId: "foo" },
       { ...getDefaultFormatValue(), id: "baz" },
       { ...getDefaultFormatValue(), id: "qux" },
       { ...getDefaultFormatValue(), id: "quux" },
@@ -196,48 +212,29 @@ test("inherit4", () => {
   });
 });
 
+// (foo) >> (baz)
+//   ^        ^
+// (bar) >> (qux)
 test("inherit5", () => {
   const schema: Schema = {
     ...getDefaultSchemaValue(),
     formats: [
       { ...getDefaultFormatValue(), id: "foo" },
-      { ...getDefaultFormatValue(), id: "bar", parentFormatIds: ["foo"] },
+      { ...getDefaultFormatValue(), id: "bar", parentFormatId: "foo" },
       { ...getDefaultFormatValue(), id: "baz" },
-      { ...getDefaultFormatValue(), id: "qux" },
-      { ...getDefaultFormatValue(), id: "quux" },
+      { ...getDefaultFormatValue(), id: "qux", parentFormatId: "baz" },
     ],
     edges: [
       { fromFormatId: "foo", toFormatId: "baz", converterId: "" },
-      { fromFormatId: "foo", toFormatId: "qux", converterId: "" },
-      { fromFormatId: "foo", toFormatId: "quux", converterId: "" },
-      { fromFormatId: "bar", toFormatId: "baz", converterId: "" },
-      { fromFormatId: "bar", toFormatId: "foo", converterId: "" },
-      { fromFormatId: "baz", toFormatId: "qux", converterId: "" },
-      { fromFormatId: "qux", toFormatId: "quux", converterId: "" },
+      { fromFormatId: "bar", toFormatId: "qux", converterId: "" },
     ],
   };
   expect(plan(schema, "bar", "baz")).toEqual<ConvertPlan>({
     fromFormatId: "bar",
     toFormatId: "baz",
     entries: [
-      { value: { field: "convert", value: { formatId: "baz" } } },
-    ],
-  });
-  expect(plan(schema, "bar", "qux")).toEqual<ConvertPlan>({
-    fromFormatId: "bar",
-    toFormatId: "qux",
-    entries: [
-      { value: { field: "convert", value: { formatId: "baz" } } },
       { value: { field: "convert", value: { formatId: "qux" } } },
-    ],
-  });
-  expect(plan(schema, "bar", "quux")).toEqual<ConvertPlan>({
-    fromFormatId: "bar",
-    toFormatId: "quux",
-    entries: [
-      { value: { field: "convert", value: { formatId: "baz" } } },
-      { value: { field: "convert", value: { formatId: "qux" } } },
-      { value: { field: "convert", value: { formatId: "quux" } } },
+      { value: { field: "upcast", value: { formatId: "baz" } } },
     ],
   });
 });

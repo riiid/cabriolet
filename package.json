@@ -5,10 +5,12 @@
   "workspaces": [
     "convert-plan-executer",
     "convert-planner",
-    "proto"
+    "dashboard",
+    "proto",
+    "schema",
+    "service"
   ],
   "devDependencies": {
-    "typescript": "^4.3.5",
-    "typescript-language-server": "^0.6.1"
+    "typescript": "4.3.5"
   }
 }
