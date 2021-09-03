@@ -1,0 +1,21 @@
+.react-flow__edge-path.react-flow__edge-path {
+  stroke-width: 2;
+}
+.react-flow__edge-path-selector {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 20;
+  stroke-dasharray: none !important;
+}
+.react-flow__edge-path-selector:hover {
+  cursor: pointer;
+}
+.react-flow__edge-path-selector:hover + .react-flow__edge-path,
+.react-flow__edge-path:hover {
+  stroke-width: 4;
+  cursor: pointer;
+}
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke-width: 4;
+  stroke-dasharray: none !important;
+}

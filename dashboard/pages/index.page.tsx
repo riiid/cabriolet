@@ -10,7 +10,19 @@ import ReactFlow, {
   Edge as FlowEdge,
 } from "react-flow-renderer";
 import * as dagre from "dagre";
+import {
+  BlueEdge,
+  BoldBlueEdge,
+  GreenEdge,
+  BoldGreenEdge,
+} from "./react-flow/custom-edge";
 
+const edgeTypes = {
+  inherit: BlueEdge,
+  "inherit-highlight": BoldBlueEdge,
+  convert: GreenEdge,
+  "convert-highlight": BoldGreenEdge,
+};
 const Page: NextPage = () => {
   const [elements] = useState(initialElements);
   return (
@@ -39,7 +51,7 @@ const Page: NextPage = () => {
         <Layout.Content style={{ padding: "0 1em" }}>
           <Tabs defaultActiveKey="1">
             <Tabs.TabPane tab="Format Hierarchy" key="1">
-              <ReactFlow elements={elements}>
+              <ReactFlow elements={elements} edgeTypes={edgeTypes}>
                 <MiniMap nodeBorderRadius={2} />
                 <Controls />
                 <Background color="#aaa" gap={16} />
@@ -62,21 +74,36 @@ const nodes: FlowNode[] = [
   { id: "1", data: { label: "foo" }, position: { x: 0, y: 0 } },
   { id: "2", data: { label: "bar" }, position: { x: 0, y: 0 } },
   { id: "3", data: { label: "baz" }, position: { x: 0, y: 0 } },
+  { id: "4", data: { label: "qux" }, position: { x: 0, y: 0 } },
 ];
 const edges: FlowEdge[] = [
   {
+    type: "inherit",
     id: "e1-2",
     source: "1",
     target: "2",
     animated: true,
-    style: { strokeWidth: 2 },
   },
   {
+    type: "inherit-highlight",
     id: "e1-3",
     source: "1",
     target: "3",
     animated: true,
-    style: { strokeWidth: 2 },
+  },
+  {
+    type: "convert",
+    id: "e2-4",
+    source: "2",
+    target: "4",
+    animated: true,
+  },
+  {
+    type: "convert-highlight",
+    id: "e3-4",
+    source: "3",
+    target: "4",
+    animated: true,
   },
 ];
 layout(nodes, edges);
