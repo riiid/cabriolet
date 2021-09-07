@@ -78,11 +78,13 @@ export function layout(nodes: FlowNode[], edges: FlowEdge[]) {
   }
 }
 
-export function getEdges(state: State2) {
+export function getEdges(state: Pick<State2, "convertEdges" | "inheritEdges">) {
   return [...state.convertEdges, ...state.inheritEdges];
 }
 
-export function getElements(state: State2) {
+export function getElements(
+  state: Pick<State2, "nodes" | "convertEdges" | "inheritEdges">,
+) {
   return [
     ...state.nodes,
     ...state.convertEdges,

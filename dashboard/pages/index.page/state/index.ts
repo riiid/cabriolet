@@ -13,6 +13,7 @@ export interface Item {
 export interface Positions {
   [formatId: string]: XYPosition;
 }
+export type State = ReturnType<typeof createIndexPageState>;
 export default function createIndexPageState() {
   const state = proxy({
     items: [] as Item[],
