@@ -7,12 +7,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "@riiid/cabriolet-proto": "workspace:proto",
+    "@riiid/cabriolet-service": "workspace:service",
     "antd": "^4.16.13",
     "dagre": "^0.8.5",
     "next": "11.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-flow-renderer": "^9.6.6"
+    "react-flow-renderer": "^9.6.6",
+    "valtio": "^1.2.2"
   },
   "devDependencies": {
     "@types/dagre": "^0.7.46",

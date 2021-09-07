@@ -3003,6 +3003,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./dashboard/",
           "packageDependencies": [
             ["@riiid/cabriolet-dashboard", "workspace:dashboard"],
+            ["@riiid/cabriolet-proto", "workspace:proto"],
+            ["@riiid/cabriolet-service", "workspace:service"],
             ["@types/dagre", "npm:0.7.46"],
             ["@types/node", "npm:16.7.10"],
             ["@types/react", "npm:17.0.19"],
@@ -3012,7 +3014,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:17.0.2"],
             ["react-dom", "virtual:c27ccfae2a2df82af01fe2056afd73d8a677275f78737f6996863fa2b9141b7ad588f7ced3a92b1f04ce1bd2c349be7fc2ccddf6d27a37fd6550dbdb3ed51105#npm:17.0.2"],
             ["react-flow-renderer", "virtual:c27ccfae2a2df82af01fe2056afd73d8a677275f78737f6996863fa2b9141b7ad588f7ced3a92b1f04ce1bd2c349be7fc2ccddf6d27a37fd6550dbdb3ed51105#npm:9.6.6"],
-            ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"]
+            ["typescript", "patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"],
+            ["valtio", "virtual:c27ccfae2a2df82af01fe2056afd73d8a677275f78737f6996863fa2b9141b7ad588f7ced3a92b1f04ce1bd2c349be7fc2ccddf6d27a37fd6550dbdb3ed51105#npm:1.2.2"]
           ],
           "linkType": "SOFT",
         }]
@@ -8404,6 +8407,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["proxy-compare", [
+        ["npm:2.0.2", {
+          "packageLocation": "./.yarn/cache/proxy-compare-npm-2.0.2-08b701b12b-f9d2805e88.zip/node_modules/proxy-compare/",
+          "packageDependencies": [
+            ["proxy-compare", "npm:2.0.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["psl", [
         ["npm:1.8.0", {
           "packageLocation": "./.yarn/cache/psl-npm-1.8.0-226099d70e-6150048ed2.zip/node_modules/psl/",
@@ -10924,6 +10936,41 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/istanbul-lib-coverage", "npm:2.0.3"],
             ["convert-source-map", "npm:1.8.0"],
             ["source-map", "npm:0.7.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["valtio", [
+        ["npm:1.2.2", {
+          "packageLocation": "./.yarn/cache/valtio-npm-1.2.2-4e980e7983-7a8f12571a.zip/node_modules/valtio/",
+          "packageDependencies": [
+            ["valtio", "npm:1.2.2"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:c27ccfae2a2df82af01fe2056afd73d8a677275f78737f6996863fa2b9141b7ad588f7ced3a92b1f04ce1bd2c349be7fc2ccddf6d27a37fd6550dbdb3ed51105#npm:1.2.2", {
+          "packageLocation": "./.yarn/__virtual__/valtio-virtual-930eb24b72/0/cache/valtio-npm-1.2.2-4e980e7983-7a8f12571a.zip/node_modules/valtio/",
+          "packageDependencies": [
+            ["valtio", "virtual:c27ccfae2a2df82af01fe2056afd73d8a677275f78737f6996863fa2b9141b7ad588f7ced3a92b1f04ce1bd2c349be7fc2ccddf6d27a37fd6550dbdb3ed51105#npm:1.2.2"],
+            ["@babel/helper-module-imports", null],
+            ["@babel/types", null],
+            ["@types/babel-plugin-macros", null],
+            ["@types/babel__helper-module-imports", null],
+            ["@types/babel__types", null],
+            ["@types/react", "npm:17.0.19"],
+            ["babel-plugin-macros", null],
+            ["proxy-compare", "npm:2.0.2"],
+            ["react", "npm:17.0.2"]
+          ],
+          "packagePeers": [
+            "@babel/helper-module-imports",
+            "@babel/types",
+            "@types/babel-plugin-macros",
+            "@types/babel__helper-module-imports",
+            "@types/babel__types",
+            "@types/react",
+            "babel-plugin-macros",
+            "react"
           ],
           "linkType": "HARD",
         }]

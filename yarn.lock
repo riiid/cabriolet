@@ -1732,6 +1732,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@riiid/cabriolet-dashboard@workspace:dashboard"
   dependencies:
+    "@riiid/cabriolet-proto": "workspace:proto"
+    "@riiid/cabriolet-service": "workspace:service"
     "@types/dagre": ^0.7.46
     "@types/node": ^16.7.10
     "@types/react": 17.0.19
@@ -1742,6 +1744,7 @@ __metadata:
     react-dom: 17.0.2
     react-flow-renderer: ^9.6.6
     typescript: 4.3.5
+    valtio: ^1.2.2
   languageName: unknown
   linkType: soft
 
@@ -6371,6 +6374,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"proxy-compare@npm:2.0.2":
+  version: 2.0.2
+  resolution: "proxy-compare@npm:2.0.2"
+  checksum: f9d2805e88231101fe3b28d7031adef5fea883ec87a88670f6b1b252193caf66afc20f16e350daccc126e7699610262775185c6ab47d4f4776018fa888136984
+  languageName: node
+  linkType: hard
+
 "psl@npm:^1.1.33":
   version: 1.8.0
   resolution: "psl@npm:1.8.0"
@@ -8175,6 +8185,29 @@ typescript@4.3.5:
     convert-source-map: ^1.6.0
     source-map: ^0.7.3
   checksum: 3e8be80b9967a18c2196b016b29a956ffddb8fd2f2abe5ae126a616209c2ed7ba3172a9630715b375c50f88dd1dea3c97ba3e2ebfaee902dc4cc6a177f31a039
+  languageName: node
+  linkType: hard
+
+"valtio@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "valtio@npm:1.2.2"
+  dependencies:
+    proxy-compare: 2.0.2
+  peerDependencies:
+    "@babel/helper-module-imports": ">=7.12"
+    "@babel/types": ">=7.13"
+    babel-plugin-macros: ">=3.0"
+    react: ">=16.8"
+  peerDependenciesMeta:
+    "@babel/helper-module-imports":
+      optional: true
+    "@babel/types":
+      optional: true
+    babel-plugin-macros:
+      optional: true
+    react:
+      optional: true
+  checksum: 7a8f12571a976828670c6043881a856e0b1aaf31e20c77958a29917b1c780215f881998c1883a9615dd1ceddb29f4a46394aea0ccd52517d90a0ed289e7e2f05
   languageName: node
   linkType: hard
 
