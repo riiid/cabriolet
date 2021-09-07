@@ -7,7 +7,7 @@ export default function Items() {
   const { mode, items, gotoNormalMode, beginAddItemMode, finishAddItemMode } =
     snap;
   return (
-    <Layout.Sider width={300}>
+    <Layout.Sider width={300} style={{ backgroundColor: "#fff" }}>
       <Button style={{ width: "100%" }} onClick={beginAddItemMode}>
         Add Item
       </Button>
