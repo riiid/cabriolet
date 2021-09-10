@@ -65,11 +65,13 @@ export function deriveReactFlow<T extends State>(state: T) {
   return state2;
 }
 
+export const nodeSize = { width: 170, height: 50 };
+
 export function layout(nodes: FlowNode[], edges: FlowEdge[]) {
   const g = new dagre.graphlib.Graph();
   g.setGraph({ rankdir: "TB" });
   g.setDefaultEdgeLabel(() => ({}));
-  for (const node of nodes) g.setNode(node.id, { width: 170, height: 50 });
+  for (const node of nodes) g.setNode(node.id, { ...nodeSize });
   for (const edge of edges) g.setEdge(edge.source, edge.target);
   dagre.layout(g);
   for (const node of nodes) {

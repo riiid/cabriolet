@@ -3004,6 +3004,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@riiid/cabriolet-dashboard", "workspace:dashboard"],
             ["@riiid/cabriolet-proto", "workspace:proto"],
+            ["@riiid/cabriolet-schema", "workspace:schema"],
             ["@riiid/cabriolet-service", "workspace:service"],
             ["@types/dagre", "npm:0.7.46"],
             ["@types/node", "npm:16.7.10"],

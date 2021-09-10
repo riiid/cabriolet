@@ -44,12 +44,26 @@ export default function createIndexPageState() {
       // TODO: add item
       state.mode = { type: "normal" };
     },
+    beginAddFormatMode() {
+      state.mode = { type: "add-format" };
+    },
+    finishAddFormatMode(id: string, x: number, y: number) {
+      state.schema.formats.push({
+        id,
+        name: "New Format",
+        description: "",
+        parentFormatId: undefined,
+        validatorIds: [],
+      });
+      state.positions[id] = { x, y };
+      state.gotoNormalMode();
+    },
   });
   const state2 = deriveReactFlow(state);
   return state2;
 }
 
-type Mode = NormalMode | AddItemMode;
+type Mode = NormalMode | AddItemMode | AddFormatMode;
 interface ModeBase<TType extends string> {
   type: TType;
 }
@@ -60,3 +74,4 @@ interface AddItemMode extends ModeBase<"add-item"> {
   file: Blob | undefined;
   waiting: boolean;
 }
+interface AddFormatMode extends ModeBase<"add-format"> {}

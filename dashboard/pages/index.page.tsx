@@ -1,25 +1,43 @@
 import type { NextPage } from "next";
+import { useSnapshot } from "valtio";
 import { Layout } from "antd";
-import createIndexPageState from "./index.page/state";
+import { ReactFlowProvider } from "react-flow-renderer";
+import createIndexPageState, { State } from "./index.page/state";
 import Items from "./index.page/Items";
 import Schema from "./index.page/Schema";
+import Properties from "./index.page/Properties";
 
 export const state = createIndexPageState();
 
 const Page: NextPage = () => {
+  const snap = useSnapshot(state);
+  const guideMessage = guideMessages[snap.mode.type];
+  const headerStyle: React.CSSProperties = {
+    color: "white",
+    textAlign: guideMessage ? "center" : "left",
+  };
   return (
-    <Layout style={{ height: "100vh" }}>
-      <Layout.Header>
-        <span style={{ color: "white", fontSize: "1.5rem" }}>
-          Cabriolet Dashboard
-        </span>
-      </Layout.Header>
-      <Layout>
-        <Items />
-        <Schema />
+    <ReactFlowProvider>
+      <Layout style={{ height: "100vh" }}>
+        <Layout.Header style={headerStyle}>
+          <span style={{ fontSize: "1.5rem" }}>
+            {guideMessage || "Cabriolet Dashboard"}
+          </span>
+        </Layout.Header>
+        <Layout>
+          <Items />
+          <Schema />
+          <Properties />
+        </Layout>
       </Layout>
-    </Layout>
+    </ReactFlowProvider>
   );
 };
 
 export default Page;
+
+const guideMessages: { [mode in State["mode"]["type"]]: string } = {
+  normal: "",
+  "add-item": "",
+  "add-format": "Click the location where you want to add the format",
+};

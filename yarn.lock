@@ -1733,6 +1733,7 @@ __metadata:
   resolution: "@riiid/cabriolet-dashboard@workspace:dashboard"
   dependencies:
     "@riiid/cabriolet-proto": "workspace:proto"
+    "@riiid/cabriolet-schema": "workspace:schema"
     "@riiid/cabriolet-service": "workspace:service"
     "@types/dagre": ^0.7.46
     "@types/node": ^16.7.10
