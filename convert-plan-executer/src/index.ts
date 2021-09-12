@@ -10,7 +10,7 @@ import { getConvertFn } from "./converter";
 export class ExecConvertPlanError extends Error {
   constructor(
     public concretePlanEntry: ConcretePlanEntry,
-    public error: Error,
+    public error: Error
   ) {
     super(error.message);
   }
@@ -20,12 +20,12 @@ export interface ExecConvertPlanFn {
   (
     schema: Schema,
     convertPlan: ConvertPlan,
-    input: Uint8Array,
+    input: Uint8Array
   ): Promise<Uint8Array>;
 }
 
 export default function getExecConvertPlanFn(
-  getSrcDataFn: typeof getSrcData = getSrcData,
+  getSrcDataFn: typeof getSrcData = getSrcData
 ): ExecConvertPlanFn {
   return async function execConvertPlan(schema, convertPlan, input) {
     const getValidatorsFn = getGetValidatorsFn(schema);
@@ -44,13 +44,13 @@ export default function getExecConvertPlanFn(
           case "convert":
             const converter = getConverterFn(
               entry.fromFormatId,
-              entry.toFormatId,
+              entry.toFormatId
             );
             const convert = await getConvertFn(converter, getSrcDataFn);
             currInput = await convert(currInput);
             break;
         }
-      } catch (err) {
+      } catch (err: any) {
         throw new ExecConvertPlanError(entry, err);
       }
     }

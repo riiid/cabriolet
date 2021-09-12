@@ -12,6 +12,6 @@
     "@riiid/cabriolet-schema": "workspace:schema"
   },
   "devDependencies": {
-    "typescript": "4.3.5"
+    "typescript": "^4.4.3"
   }
 }
