@@ -1,9 +1,10 @@
 import ivm from "isolated-vm";
+import { U8sInU8sOutFn, U8sInVoidOutFn } from ".";
 
-export async function u8sInU8sOut(
+export const u8sInU8sOut: U8sInU8sOutFn = async (
   js: string,
   input: Uint8Array,
-): Promise<Uint8Array> {
+): Promise<Uint8Array> => {
   const { isolate, result } = await execIsolate(
     js,
     new ivm.ExternalCopy(
@@ -14,12 +15,12 @@ export async function u8sInU8sOut(
   const out = await (result as ivm.Reference).copy();
   isolate.dispose();
   return out;
-}
+};
 
-export async function u8sInVoidOut(
+export const u8sInVoidOut: U8sInVoidOutFn = async (
   js: string,
   input: Uint8Array,
-): Promise<void> {
+): Promise<void> => {
   const { isolate } = await execIsolate(
     js,
     new ivm.ExternalCopy(
@@ -28,7 +29,7 @@ export async function u8sInVoidOut(
     ).copyInto({ release: true }),
   );
   isolate.dispose();
-}
+};
 
 interface ExecIsolateResult {
   isolate: ivm.Isolate;

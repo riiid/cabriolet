@@ -1,7 +1,5 @@
-import { readFile } from "fs/promises";
 import * as ssri from "ssri";
-import parseDataURL from "data-urls";
-import fetch from "node-fetch";
+import { FetchDataFn } from "./fetchData";
 
 export interface Src {
   src: string;
@@ -18,16 +16,24 @@ export function createSrcByData(
   };
 }
 
-export async function createSrcByPath(src: string): Promise<Src> {
-  const data = await getDataFromPath(src);
+export async function createSrcByPath(
+  src: string,
+  fetchDataFn: FetchDataFn,
+): Promise<Src> {
+  const data = await fetchDataFn(src);
   return { src, integrity: getIntegrity(data) };
 }
 
-export async function getSrcData({ src, integrity }: Src): Promise<Uint8Array> {
-  const data = await getDataFromPath(src);
-  const match = ssri.checkData(data, integrity);
-  if (!match) throw new Error("Integrity check failed");
-  return data;
+export interface GetSrcDataFn {
+  (src: Src): Promise<Uint8Array>;
+}
+export function getGetSrcData(fetchDataFn: FetchDataFn): GetSrcDataFn {
+  return async function getSrcData({ src, integrity }) {
+    const data = await fetchDataFn(src);
+    const match = ssri.checkData(data, integrity);
+    if (!match) throw new Error("Integrity check failed");
+    return data;
+  };
 }
 
 export function getDataUrl(
@@ -43,18 +49,4 @@ export function getIntegrity(data: Uint8Array): string {
     .update(data)
     .digest()
     .toString();
-}
-
-async function getDataFromPath(src: string) {
-  if (src.startsWith(".") || src.startsWith("/")) return await readFile(src);
-  if (src.startsWith("file:")) {
-    const url = new URL(src);
-    return await readFile(decodeURIComponent(url.pathname));
-  }
-  if (src.startsWith("data:")) {
-    const data = parseDataURL(src);
-    if (!data) throw new Error("Invalid data URL");
-    return data.body;
-  }
-  return await fetch(src).then((res) => res.buffer());
 }
