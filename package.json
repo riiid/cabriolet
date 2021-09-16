@@ -9,7 +9,8 @@
     "proto",
     "schema",
     "service",
-    "service-impl/*"
+    "service-impl/*",
+    "service-test"
   ],
   "devDependencies": {
     "typescript": "^4.4.3"

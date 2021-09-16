@@ -53,6 +53,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {
         "name": "@riiid/cabriolet-service-impl-memory",
         "reference": "workspace:service-impl/memory"
+      },
+      {
+        "name": "@riiid/cabriolet-service-test",
+        "reference": "workspace:service-test"
       }
     ],
     "enableTopLevelFallback": true,
@@ -66,6 +70,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@riiid/cabriolet-service", ["workspace:service"]],
       ["@riiid/cabriolet-service-impl-azure", ["workspace:service-impl/azure"]],
       ["@riiid/cabriolet-service-impl-memory", ["workspace:service-impl/memory"]],
+      ["@riiid/cabriolet-service-test", ["workspace:service-test"]],
       ["cabriolet", ["workspace:."]]
     ],
     "fallbackPool": [
@@ -3080,6 +3085,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@riiid/cabriolet-proto", "workspace:proto"],
             ["@riiid/cabriolet-schema", "workspace:schema"],
             ["@riiid/cabriolet-service", "workspace:service"],
+            ["@riiid/cabriolet-service-test", "workspace:service-test"],
             ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"]
           ],
           "linkType": "SOFT",
@@ -3092,6 +3098,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@riiid/cabriolet-service-impl-memory", "workspace:service-impl/memory"],
             ["@riiid/cabriolet-proto", "workspace:proto"],
             ["@riiid/cabriolet-schema", "workspace:schema"],
+            ["@riiid/cabriolet-service", "workspace:service"],
+            ["@riiid/cabriolet-service-test", "workspace:service-test"],
+            ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@riiid/cabriolet-service-test", [
+        ["workspace:service-test", {
+          "packageLocation": "./service-test/",
+          "packageDependencies": [
+            ["@riiid/cabriolet-service-test", "workspace:service-test"],
+            ["@riiid/cabriolet-proto", "workspace:proto"],
             ["@riiid/cabriolet-service", "workspace:service"],
             ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"]
           ],

@@ -1,7 +1,8 @@
 {
-  "name": "@riiid/cabriolet-service-impl-memory",
+  "name": "@riiid/cabriolet-service-test",
   "packageManager": "yarn@3.0.1",
   "type": "module",
+  "main": "lib/index.js",
   "scripts": {
     "build": "tsc"
   },
@@ -10,11 +11,9 @@
   ],
   "dependencies": {
     "@riiid/cabriolet-proto": "workspace:proto",
-    "@riiid/cabriolet-schema": "workspace:schema",
     "@riiid/cabriolet-service": "workspace:service"
   },
   "devDependencies": {
-    "@riiid/cabriolet-service-test": "workspace:service-test",
     "typescript": "^4.4.3"
   }
 }

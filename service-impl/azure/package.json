@@ -1,6 +1,7 @@
 {
   "name": "@riiid/cabriolet-service-impl-azure",
   "packageManager": "yarn@3.0.1",
+  "type": "module",
   "scripts": {
     "build": "tsc"
   },
@@ -13,6 +14,7 @@
     "@riiid/cabriolet-service": "workspace:service"
   },
   "devDependencies": {
+    "@riiid/cabriolet-service-test": "workspace:service-test",
     "typescript": "^4.4.3"
   }
 }

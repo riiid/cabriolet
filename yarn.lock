@@ -1781,6 +1781,7 @@ __metadata:
     "@riiid/cabriolet-proto": "workspace:proto"
     "@riiid/cabriolet-schema": "workspace:schema"
     "@riiid/cabriolet-service": "workspace:service"
+    "@riiid/cabriolet-service-test": "workspace:service-test"
     typescript: ^4.4.3
   languageName: unknown
   linkType: soft
@@ -1791,6 +1792,17 @@ __metadata:
   dependencies:
     "@riiid/cabriolet-proto": "workspace:proto"
     "@riiid/cabriolet-schema": "workspace:schema"
+    "@riiid/cabriolet-service": "workspace:service"
+    "@riiid/cabriolet-service-test": "workspace:service-test"
+    typescript: ^4.4.3
+  languageName: unknown
+  linkType: soft
+
+"@riiid/cabriolet-service-test@workspace:service-test":
+  version: 0.0.0-use.local
+  resolution: "@riiid/cabriolet-service-test@workspace:service-test"
+  dependencies:
+    "@riiid/cabriolet-proto": "workspace:proto"
     "@riiid/cabriolet-service": "workspace:service"
     typescript: ^4.4.3
   languageName: unknown

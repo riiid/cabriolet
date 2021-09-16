@@ -1,6 +1,7 @@
 {
   "name": "@riiid/cabriolet-proto",
   "packageManager": "yarn@3.0.1",
+  "type": "module",
   "scripts": {
     "clean": "yarn clean:pollapo && yarn clean:pb && yarn clean:tsc",
     "clean:pollapo": "rm -rf .pollapo",
