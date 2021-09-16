@@ -1774,6 +1774,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@riiid/cabriolet-service-impl-azure@workspace:service-impl/azure":
+  version: 0.0.0-use.local
+  resolution: "@riiid/cabriolet-service-impl-azure@workspace:service-impl/azure"
+  dependencies:
+    "@riiid/cabriolet-proto": "workspace:proto"
+    "@riiid/cabriolet-schema": "workspace:schema"
+    "@riiid/cabriolet-service": "workspace:service"
+    typescript: ^4.4.3
+  languageName: unknown
+  linkType: soft
+
 "@riiid/cabriolet-service-impl-memory@workspace:service-impl/memory":
   version: 0.0.0-use.local
   resolution: "@riiid/cabriolet-service-impl-memory@workspace:service-impl/memory"

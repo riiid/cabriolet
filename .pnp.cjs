@@ -47,6 +47,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:service"
       },
       {
+        "name": "@riiid/cabriolet-service-impl-azure",
+        "reference": "workspace:service-impl/azure"
+      },
+      {
         "name": "@riiid/cabriolet-service-impl-memory",
         "reference": "workspace:service-impl/memory"
       }
@@ -60,6 +64,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@riiid/cabriolet-proto", ["workspace:proto"]],
       ["@riiid/cabriolet-schema", ["workspace:schema"]],
       ["@riiid/cabriolet-service", ["workspace:service"]],
+      ["@riiid/cabriolet-service-impl-azure", ["workspace:service-impl/azure"]],
       ["@riiid/cabriolet-service-impl-memory", ["workspace:service-impl/memory"]],
       ["cabriolet", ["workspace:."]]
     ],
@@ -3062,6 +3067,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@riiid/cabriolet-service", "workspace:service"],
             ["@riiid/cabriolet-proto", "workspace:proto"],
             ["@riiid/cabriolet-schema", "workspace:schema"],
+            ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@riiid/cabriolet-service-impl-azure", [
+        ["workspace:service-impl/azure", {
+          "packageLocation": "./service-impl/azure/",
+          "packageDependencies": [
+            ["@riiid/cabriolet-service-impl-azure", "workspace:service-impl/azure"],
+            ["@riiid/cabriolet-proto", "workspace:proto"],
+            ["@riiid/cabriolet-schema", "workspace:schema"],
+            ["@riiid/cabriolet-service", "workspace:service"],
             ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"]
           ],
           "linkType": "SOFT",
