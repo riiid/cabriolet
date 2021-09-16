@@ -45,6 +45,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {
         "name": "@riiid/cabriolet-service",
         "reference": "workspace:service"
+      },
+      {
+        "name": "@riiid/cabriolet-service-impl-memory",
+        "reference": "workspace:service-impl/memory"
       }
     ],
     "enableTopLevelFallback": true,
@@ -56,6 +60,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@riiid/cabriolet-proto", ["workspace:proto"]],
       ["@riiid/cabriolet-schema", ["workspace:schema"]],
       ["@riiid/cabriolet-service", ["workspace:service"]],
+      ["@riiid/cabriolet-service-impl-memory", ["workspace:service-impl/memory"]],
       ["cabriolet", ["workspace:."]]
     ],
     "fallbackPool": [
@@ -3057,6 +3062,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@riiid/cabriolet-service", "workspace:service"],
             ["@riiid/cabriolet-proto", "workspace:proto"],
             ["@riiid/cabriolet-schema", "workspace:schema"],
+            ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@riiid/cabriolet-service-impl-memory", [
+        ["workspace:service-impl/memory", {
+          "packageLocation": "./service-impl/memory/",
+          "packageDependencies": [
+            ["@riiid/cabriolet-service-impl-memory", "workspace:service-impl/memory"],
+            ["@riiid/cabriolet-proto", "workspace:proto"],
+            ["@riiid/cabriolet-schema", "workspace:schema"],
+            ["@riiid/cabriolet-service", "workspace:service"],
             ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"]
           ],
           "linkType": "SOFT",

@@ -1,4 +1,4 @@
-import { Storage } from "../index";
+import { Storage } from "@riiid/cabriolet-service";
 
 export default function createMemoryStorage(): Storage {
   type Item = { value: Uint8Array; formatId: string };

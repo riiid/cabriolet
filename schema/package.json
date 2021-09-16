@@ -1,6 +1,8 @@
 {
   "name": "@riiid/cabriolet-schema",
   "packageManager": "yarn@3.0.1",
+  "type": "module",
+  "main": "lib/index.js",
   "scripts": {
     "build": "tsc"
   },

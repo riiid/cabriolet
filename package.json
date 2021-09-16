@@ -8,7 +8,8 @@
     "dashboard",
     "proto",
     "schema",
-    "service"
+    "service",
+    "service-impl/*"
   ],
   "devDependencies": {
     "typescript": "^4.4.3"

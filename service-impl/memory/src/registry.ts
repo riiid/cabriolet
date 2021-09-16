@@ -11,8 +11,8 @@ import {
   newValidatorId,
   removeValidator,
   setParent,
-} from "@riiid/cabriolet-schema/lib";
-import { Registry } from "../index";
+} from "@riiid/cabriolet-schema";
+import { Registry } from "@riiid/cabriolet-service";
 
 export default function createMemoryRegistry(): Registry {
   let schema: Schema = {
