@@ -3,6 +3,7 @@
   "packageManager": "yarn@3.0.1",
   "type": "module",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
@@ -10,11 +11,11 @@
     "/lib/**/*"
   ],
   "dependencies": {
+    "@pbkit/sri": "^0.0.1",
     "@riiid/cabriolet-proto": "workspace:proto",
     "data-urls": "^3.0.0",
     "nanoid": "^3.1.25",
-    "node-fetch": "^2.6.1",
-    "ssri": "^8.0.1"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@types/data-urls": "^2.0.1",

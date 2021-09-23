@@ -2,12 +2,14 @@ import type { NextPage } from "next";
 import { useSnapshot } from "valtio";
 import { Layout } from "antd";
 import { ReactFlowProvider } from "react-flow-renderer";
+import createBrowserMemoryService from "@riiid/cabriolet-service-preset-browser-memory";
 import createIndexPageState, { State } from "./index.page/state";
 import Items from "./index.page/Items";
 import Schema from "./index.page/Schema";
 import Properties from "./index.page/Properties";
 
-export const state = createIndexPageState();
+const service = createBrowserMemoryService();
+export const state = createIndexPageState(service);
 
 const Page: NextPage = () => {
   const snap = useSnapshot(state);

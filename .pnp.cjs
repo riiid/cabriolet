@@ -35,6 +35,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:dashboard"
       },
       {
+        "name": "@riiid/cabriolet-hash-fns",
+        "reference": "workspace:hash-fns"
+      },
+      {
         "name": "@riiid/cabriolet-proto",
         "reference": "workspace:proto"
       },
@@ -55,6 +59,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:service-impl/memory"
       },
       {
+        "name": "@riiid/cabriolet-service-preset-browser-memory",
+        "reference": "workspace:service-preset/browser-memory"
+      },
+      {
         "name": "@riiid/cabriolet-service-test",
         "reference": "workspace:service-test"
       }
@@ -65,11 +73,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["@riiid/cabriolet-convert-plan-executer", ["workspace:convert-plan-executer"]],
       ["@riiid/cabriolet-convert-planner", ["workspace:convert-planner"]],
       ["@riiid/cabriolet-dashboard", ["workspace:dashboard"]],
+      ["@riiid/cabriolet-hash-fns", ["workspace:hash-fns"]],
       ["@riiid/cabriolet-proto", ["workspace:proto"]],
       ["@riiid/cabriolet-schema", ["workspace:schema"]],
       ["@riiid/cabriolet-service", ["workspace:service"]],
       ["@riiid/cabriolet-service-impl-azure", ["workspace:service-impl/azure"]],
       ["@riiid/cabriolet-service-impl-memory", ["workspace:service-impl/memory"]],
+      ["@riiid/cabriolet-service-preset-browser-memory", ["workspace:service-preset/browser-memory"]],
       ["@riiid/cabriolet-service-test", ["workspace:service-test"]],
       ["cabriolet", ["workspace:."]]
     ],
@@ -2976,6 +2986,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@pbkit/sri", [
+        ["npm:0.0.1", {
+          "packageLocation": "./.yarn/cache/@pbkit-sri-npm-0.0.1-33957c077e-d53e52fbbd.zip/node_modules/@pbkit/sri/",
+          "packageDependencies": [
+            ["@pbkit/sri", "npm:0.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@riiid/cabriolet-convert-plan-executer", [
         ["workspace:convert-plan-executer", {
           "packageLocation": "./convert-plan-executer/",
@@ -3021,6 +3040,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@riiid/cabriolet-proto", "workspace:proto"],
             ["@riiid/cabriolet-schema", "workspace:schema"],
             ["@riiid/cabriolet-service", "workspace:service"],
+            ["@riiid/cabriolet-service-preset-browser-memory", "workspace:service-preset/browser-memory"],
             ["@types/dagre", "npm:0.7.46"],
             ["@types/node", "npm:16.7.10"],
             ["@types/react", "npm:17.0.19"],
@@ -3032,6 +3052,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-flow-renderer", "virtual:c27ccfae2a2df82af01fe2056afd73d8a677275f78737f6996863fa2b9141b7ad588f7ced3a92b1f04ce1bd2c349be7fc2ccddf6d27a37fd6550dbdb3ed51105#npm:9.6.6"],
             ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"],
             ["valtio", "virtual:c27ccfae2a2df82af01fe2056afd73d8a677275f78737f6996863fa2b9141b7ad588f7ced3a92b1f04ce1bd2c349be7fc2ccddf6d27a37fd6550dbdb3ed51105#npm:1.2.2"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@riiid/cabriolet-hash-fns", [
+        ["workspace:hash-fns", {
+          "packageLocation": "./hash-fns/",
+          "packageDependencies": [
+            ["@riiid/cabriolet-hash-fns", "workspace:hash-fns"],
+            ["@pbkit/sri", "npm:0.0.1"],
+            ["@riiid/cabriolet-service", "workspace:service"],
+            ["jssha", "npm:3.2.0"],
+            ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"]
           ],
           "linkType": "SOFT",
         }]
@@ -3051,6 +3084,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./schema/",
           "packageDependencies": [
             ["@riiid/cabriolet-schema", "workspace:schema"],
+            ["@pbkit/sri", "npm:0.0.1"],
             ["@riiid/cabriolet-proto", "workspace:proto"],
             ["@types/data-urls", "npm:2.0.1"],
             ["@types/node", "npm:16.7.4"],
@@ -3059,7 +3093,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["data-urls", "npm:3.0.0"],
             ["nanoid", "npm:3.1.25"],
             ["node-fetch", "npm:2.6.1"],
-            ["ssri", "npm:8.0.1"],
             ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"]
           ],
           "linkType": "SOFT",
@@ -3100,6 +3133,23 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@riiid/cabriolet-schema", "workspace:schema"],
             ["@riiid/cabriolet-service", "workspace:service"],
             ["@riiid/cabriolet-service-test", "workspace:service-test"],
+            ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["@riiid/cabriolet-service-preset-browser-memory", [
+        ["workspace:service-preset/browser-memory", {
+          "packageLocation": "./service-preset/browser-memory/",
+          "packageDependencies": [
+            ["@riiid/cabriolet-service-preset-browser-memory", "workspace:service-preset/browser-memory"],
+            ["@riiid/cabriolet-convert-plan-executer", "workspace:convert-plan-executer"],
+            ["@riiid/cabriolet-convert-planner", "workspace:convert-planner"],
+            ["@riiid/cabriolet-hash-fns", "workspace:hash-fns"],
+            ["@riiid/cabriolet-schema", "workspace:schema"],
+            ["@riiid/cabriolet-service", "workspace:service"],
+            ["@riiid/cabriolet-service-impl-memory", "workspace:service-impl/memory"],
+            ["js-base64", "npm:3.7.2"],
             ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"]
           ],
           "linkType": "SOFT",
@@ -7305,6 +7355,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["js-base64", [
+        ["npm:3.7.2", {
+          "packageLocation": "./.yarn/cache/js-base64-npm-3.7.2-706fb77a0b-573f28e9a2.zip/node_modules/js-base64/",
+          "packageDependencies": [
+            ["js-base64", "npm:3.7.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["js-tokens", [
         ["npm:4.0.0", {
           "packageLocation": "./.yarn/cache/js-tokens-npm-4.0.0-0ac852e9e2-8a95213a5a.zip/node_modules/js-tokens/",
@@ -7414,6 +7473,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["json5", "npm:2.2.0"],
             ["minimist", "npm:1.2.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["jssha", [
+        ["npm:3.2.0", {
+          "packageLocation": "./.yarn/cache/jssha-npm-3.2.0-c57f6fc836-2adb8a9a57.zip/node_modules/jssha/",
+          "packageDependencies": [
+            ["jssha", "npm:3.2.0"]
           ],
           "linkType": "HARD",
         }]

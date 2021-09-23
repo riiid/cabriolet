@@ -1,0 +1,25 @@
+{
+  "name": "@riiid/cabriolet-service-preset-browser-memory",
+  "packageManager": "yarn@3.0.1",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "/lib/**/*"
+  ],
+  "dependencies": {
+    "@riiid/cabriolet-convert-plan-executer": "workspace:convert-plan-executer",
+    "@riiid/cabriolet-convert-planner": "workspace:convert-planner",
+    "@riiid/cabriolet-hash-fns": "workspace:hash-fns",
+    "@riiid/cabriolet-schema": "workspace:schema",
+    "@riiid/cabriolet-service": "workspace:service",
+    "@riiid/cabriolet-service-impl-memory": "workspace:service-impl/memory",
+    "js-base64": "^3.7.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  }
+}

@@ -1,9 +1,10 @@
-import { proxy } from "valtio";
+import { proxy, ref } from "valtio";
 import { XYPosition } from "react-flow-renderer";
 import {
   getDefaultValue as getInitialSchema,
   Type as Schema,
 } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/Schema";
+import { Service } from "@riiid/cabriolet-proto/lib/services/riiid/kvf/KvfService";
 import { deriveReactFlow, getEdges, layout } from "./react-flow";
 
 export interface Item {
@@ -14,8 +15,9 @@ export interface Positions {
   [formatId: string]: XYPosition;
 }
 export type State = ReturnType<typeof createIndexPageState>;
-export default function createIndexPageState() {
+export default function createIndexPageState(service: Service) {
   const state = proxy({
+    service: ref(service),
     items: [] as Item[],
     schema: getInitialSchema(),
     positions: {} as Positions,

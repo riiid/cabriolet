@@ -1695,6 +1695,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pbkit/sri@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@pbkit/sri@npm:0.0.1"
+  checksum: d53e52fbbdc730b222ac78801fb8f3fdf4b98fa7a60e9a1e37883208357bb3d3583ce0d97ad3245d24532f32270ed7b755f3c17a60c6340b87507a1d7b326ad0
+  languageName: node
+  linkType: hard
+
 "@riiid/cabriolet-convert-plan-executer@workspace:convert-plan-executer":
   version: 0.0.0-use.local
   resolution: "@riiid/cabriolet-convert-plan-executer@workspace:convert-plan-executer"
@@ -1735,6 +1742,7 @@ __metadata:
     "@riiid/cabriolet-proto": "workspace:proto"
     "@riiid/cabriolet-schema": "workspace:schema"
     "@riiid/cabriolet-service": "workspace:service"
+    "@riiid/cabriolet-service-preset-browser-memory": "workspace:service-preset/browser-memory"
     "@types/dagre": ^0.7.46
     "@types/node": ^16.7.10
     "@types/react": 17.0.19
@@ -1746,6 +1754,17 @@ __metadata:
     react-flow-renderer: ^9.6.6
     typescript: ^4.4.3
     valtio: ^1.2.2
+  languageName: unknown
+  linkType: soft
+
+"@riiid/cabriolet-hash-fns@workspace:hash-fns":
+  version: 0.0.0-use.local
+  resolution: "@riiid/cabriolet-hash-fns@workspace:hash-fns"
+  dependencies:
+    "@pbkit/sri": ^0.0.1
+    "@riiid/cabriolet-service": "workspace:service"
+    jssha: ^3.2.0
+    typescript: ^4.4.3
   languageName: unknown
   linkType: soft
 
@@ -1761,6 +1780,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@riiid/cabriolet-schema@workspace:schema"
   dependencies:
+    "@pbkit/sri": ^0.0.1
     "@riiid/cabriolet-proto": "workspace:proto"
     "@types/data-urls": ^2.0.1
     "@types/node": ^16.7.4
@@ -1769,7 +1789,6 @@ __metadata:
     data-urls: ^3.0.0
     nanoid: ^3.1.25
     node-fetch: ^2.6.1
-    ssri: ^8.0.1
     typescript: ^4.4.3
   languageName: unknown
   linkType: soft
@@ -1794,6 +1813,21 @@ __metadata:
     "@riiid/cabriolet-schema": "workspace:schema"
     "@riiid/cabriolet-service": "workspace:service"
     "@riiid/cabriolet-service-test": "workspace:service-test"
+    typescript: ^4.4.3
+  languageName: unknown
+  linkType: soft
+
+"@riiid/cabriolet-service-preset-browser-memory@workspace:service-preset/browser-memory":
+  version: 0.0.0-use.local
+  resolution: "@riiid/cabriolet-service-preset-browser-memory@workspace:service-preset/browser-memory"
+  dependencies:
+    "@riiid/cabriolet-convert-plan-executer": "workspace:convert-plan-executer"
+    "@riiid/cabriolet-convert-planner": "workspace:convert-planner"
+    "@riiid/cabriolet-hash-fns": "workspace:hash-fns"
+    "@riiid/cabriolet-schema": "workspace:schema"
+    "@riiid/cabriolet-service": "workspace:service"
+    "@riiid/cabriolet-service-impl-memory": "workspace:service-impl/memory"
+    js-base64: ^3.7.2
     typescript: ^4.4.3
   languageName: unknown
   linkType: soft
@@ -5386,6 +5420,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"js-base64@npm:^3.7.2":
+  version: 3.7.2
+  resolution: "js-base64@npm:3.7.2"
+  checksum: 573f28e9a27c3df60096d4d3f551bcb4fcb6d49161cf83396e9bad9b76f94736a70bb70b8808fe834dff2a388f76604ba09d6e153bbf181646e407720139fa5b
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -5491,6 +5532,13 @@ __metadata:
   bin:
     json5: lib/cli.js
   checksum: e88fc5274bb58fc99547baa777886b069d2dd96d9cfc4490b305fd16d711dabd5979e35a4f90873cefbeb552e216b041a304fe56702bedba76e19bc7845f208d
+  languageName: node
+  linkType: hard
+
+"jssha@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "jssha@npm:3.2.0"
+  checksum: 2adb8a9a57a79360379e843c0548e240d072c2ef12aef39ef6a784315686bd6f65501e9353fdd2f3a604f64af07e7eab04a0ed92b221cdfea97d671d7b8e14f4
   languageName: node
   linkType: hard
 

@@ -6,10 +6,12 @@
     "convert-plan-executer",
     "convert-planner",
     "dashboard",
+    "hash-fns",
     "proto",
     "schema",
     "service",
     "service-impl/*",
+    "service-preset/*",
     "service-test"
   ],
   "devDependencies": {

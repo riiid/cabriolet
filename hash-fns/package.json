@@ -1,5 +1,5 @@
 {
-  "name": "@riiid/cabriolet-service",
+  "name": "@riiid/cabriolet-hash-fns",
   "packageManager": "yarn@3.0.1",
   "type": "module",
   "main": "lib/index.js",
@@ -11,8 +11,9 @@
     "/lib/**/*"
   ],
   "dependencies": {
-    "@riiid/cabriolet-proto": "workspace:proto",
-    "@riiid/cabriolet-schema": "workspace:schema"
+    "@pbkit/sri": "^0.0.1",
+    "@riiid/cabriolet-service": "workspace:service",
+    "jssha": "^3.2.0"
   },
   "devDependencies": {
     "typescript": "^4.4.3"
