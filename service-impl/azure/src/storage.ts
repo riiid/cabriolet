@@ -5,7 +5,7 @@ export interface CreateAzureStorageConfig {}
 export default function createAzureStorage(
   config: CreateAzureStorageConfig
 ): Storage {
-  const client = new BlobServiceClient("http://0.0.0.0:10000")
+
   return {
     async has({ key }) {
       return {} as any; // TODO
@@ -26,4 +26,14 @@ export default function createAzureStorage(
       return {} as any; // TODO
     },
   };
+}
+
+export async function clientConfiguration(): Promise<Boolean> {
+  try {
+    const client = new BlobServiceClient("http://0.0.0.0:10000")
+  } catch (e) {
+    console.log(e)
+  }
+
+  return true
 }
