@@ -1,9 +1,11 @@
 import { Storage } from "@riiid/cabriolet-service";
+import { BlobServiceClient} from "@azure/storage-blob";
 
 export interface CreateAzureStorageConfig {}
 export default function createAzureStorage(
-  config: CreateAzureStorageConfig,
+  config: CreateAzureStorageConfig
 ): Storage {
+  const client = new BlobServiceClient("http://0.0.0.0:10000")
   return {
     async has({ key }) {
       return {} as any; // TODO

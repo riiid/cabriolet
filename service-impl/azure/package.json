@@ -14,6 +14,7 @@
     "@riiid/cabriolet-service": "workspace:service"
   },
   "devDependencies": {
+    "@azure/storage-blob": "^12.8.0",
     "@riiid/cabriolet-service-test": "workspace:service-test",
     "typescript": "^4.4.3"
   }
