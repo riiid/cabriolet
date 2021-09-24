@@ -1,8 +1,9 @@
 import { useSnapshot } from "valtio";
 import { Layout, Table, Button, Drawer } from "antd";
-import { state } from "../index.page";
+import { useIndexPageStateContext } from "../index.page/state";
 
 export default function Items() {
+  const state = useIndexPageStateContext();
   const snap = useSnapshot(state);
   const { mode, items, gotoNormalMode, beginAddItemMode, finishAddItemMode } =
     snap;

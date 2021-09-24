@@ -1,17 +1,35 @@
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { useSnapshot } from "valtio";
 import { Layout } from "antd";
 import { ReactFlowProvider } from "react-flow-renderer";
 import createBrowserMemoryService from "@riiid/cabriolet-service-preset-browser-memory";
-import createIndexPageState, { State } from "./index.page/state";
+import createIndexPageState, {
+  State,
+  indexPageStateContext,
+  useIndexPageStateContext,
+} from "./index.page/state";
 import Items from "./index.page/Items";
 import Schema from "./index.page/Schema";
 import Properties from "./index.page/Properties";
 
-const service = createBrowserMemoryService();
-export const state = createIndexPageState(service);
-
 const Page: NextPage = () => {
+  const [state, setState] = useState<State>();
+  useEffect(() => {
+    const service = createBrowserMemoryService();
+    createIndexPageState(service).then(setState);
+  }, []);
+  return (
+    <indexPageStateContext.Provider value={state as State}>
+      {state && <WithState />}
+    </indexPageStateContext.Provider>
+  );
+};
+
+export default Page;
+
+function WithState() {
+  const state = useIndexPageStateContext();
   const snap = useSnapshot(state);
   const guideMessage = guideMessages[snap.mode.type];
   const headerStyle: React.CSSProperties = {
@@ -34,9 +52,7 @@ const Page: NextPage = () => {
       </Layout>
     </ReactFlowProvider>
   );
-};
-
-export default Page;
+}
 
 const guideMessages: { [mode in State["mode"]["type"]]: string } = {
   normal: "",

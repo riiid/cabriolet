@@ -17,7 +17,7 @@ import {
 } from "../react-flow/custom-edge";
 import { State } from "./state";
 import { getElements, nodeSize } from "./state/react-flow";
-import { state } from "../index.page";
+import { useIndexPageStateContext } from "../index.page/state";
 
 const edgeTypes = {
   inherit: BlueEdge,
@@ -27,6 +27,7 @@ const edgeTypes = {
 };
 
 export default function Schema() {
+  const state = useIndexPageStateContext();
   const snap = useSnapshot(state) as State;
   const elements = getElements(snap);
   const reactFlowWrapperRef = useRef<HTMLDivElement>(null);
