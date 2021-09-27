@@ -58,4 +58,5 @@ const guideMessages: { [mode in State["mode"]["type"]]: string } = {
   normal: "",
   "add-item": "",
   "add-format": "Click the location where you want to add the format",
+  "add-edge": "",
 };

@@ -3,6 +3,7 @@ import { useSnapshot } from "valtio";
 import { Layout, Button } from "antd";
 import { useStoreState } from "react-flow-renderer";
 import { Type as Format } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/Format";
+import { Type as Edge } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/Edge";
 import { useIndexPageStateContext } from "../index.page/state";
 
 export default function Properties() {
@@ -42,6 +43,10 @@ function NodeProperties({ id }: NodePropertiesProps) {
   const snap = useSnapshot(state);
   const format = snap.schema.formats.find((f) => f.id === id);
   if (format) return <FormatProperties format={format} />;
+  const edge = snap.schema.edges.find(
+    (e) => `${e.fromFormatId}\0${e.toFormatId}` === id
+  );
+  if (edge) return <EdgeProperties edge={edge} />;
   return null;
 }
 
@@ -74,6 +79,30 @@ function FormatProperties({ format }: FormatPropertiesProps) {
                 }}
               />
             </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+interface EdgePropertiesProps {
+  edge: Edge;
+}
+function EdgeProperties({ edge }: EdgePropertiesProps) {
+  // const state = useIndexPageStateContext();
+  return (
+    <div style={{ padding: "1em", borderBottom: "1px solid #eee" }}>
+      Edge
+      <table>
+        <tbody>
+          <tr>
+            <td>from format id</td>
+            <td>{edge.fromFormatId}</td>
+          </tr>
+          <tr>
+            <td>to format id</td>
+            <td>{edge.toFormatId}</td>
           </tr>
         </tbody>
       </table>

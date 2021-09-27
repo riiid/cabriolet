@@ -47,15 +47,45 @@ export default async function createIndexPageState(service: Service) {
     beginAddFormatMode() {
       state.mode = { type: "add-format" };
     },
-    finishAddFormatMode(id: string, x: number, y: number) {
+    async finishAddFormatMode(x: number, y: number) {
+      const formatName = "New Format";
+      const formatDescription = "";
+      const { formatId } = await state.service.createFormat({
+        formatName,
+        formatDescription,
+      });
       state.schema.formats.push({
-        id,
-        name: "New Format",
-        description: "",
+        id: formatId,
+        name: formatName,
+        description: formatDescription,
         parentFormatId: undefined,
         validatorIds: [],
       });
-      state.positions[id] = { x, y };
+      state.positions[formatId] = { x, y };
+      state.gotoNormalMode();
+      return formatId;
+    },
+    beginAddEdgeMode(fromFormatId: string, toFormatId: string) {
+      state.mode = { type: "add-edge", fromFormatId, toFormatId };
+    },
+    async finishAddEdgeMode(
+      converterName: string,
+      converterDescription: string,
+      converterSrc: string,
+      converterIntegrity: string,
+    ) {
+      if (state.mode.type !== "add-edge") throw new Error("invalid mode");
+      const fromFormatId = state.mode.fromFormatId;
+      const toFormatId = state.mode.toFormatId;
+      const { converterId } = await state.service.createConverter({
+        fromFormatId,
+        toFormatId,
+        converterName,
+        converterDescription,
+        converterSrc,
+        converterIntegrity,
+      });
+      state.schema.edges.push({ fromFormatId, toFormatId, converterId });
       state.gotoNormalMode();
     },
   });
@@ -69,7 +99,7 @@ export function useIndexPageStateContext() {
   return useContext(indexPageStateContext);
 }
 
-type Mode = NormalMode | AddItemMode | AddFormatMode;
+type Mode = NormalMode | AddItemMode | AddFormatMode | AddEdgeMode;
 interface ModeBase<TType extends string> {
   type: TType;
 }
@@ -81,3 +111,7 @@ interface AddItemMode extends ModeBase<"add-item"> {
   waiting: boolean;
 }
 interface AddFormatMode extends ModeBase<"add-format"> {}
+interface AddEdgeMode extends ModeBase<"add-edge"> {
+  fromFormatId: string;
+  toFormatId: string;
+}
