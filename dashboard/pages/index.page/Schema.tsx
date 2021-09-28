@@ -8,7 +8,6 @@ import ReactFlow, {
   OnLoadParams,
   useStoreActions,
 } from "react-flow-renderer";
-import { newFormatId } from "@riiid/cabriolet-schema/lib";
 import {
   BlueEdge,
   BoldBlueEdge,
@@ -17,7 +16,7 @@ import {
 } from "../react-flow/custom-edge";
 import { State } from "./state";
 import { getElements, nodeSize } from "./state/react-flow";
-import { state } from "../index.page";
+import { useIndexPageStateContext } from "../index.page/state";
 
 const edgeTypes = {
   inherit: BlueEdge,
@@ -27,6 +26,7 @@ const edgeTypes = {
 };
 
 export default function Schema() {
+  const state = useIndexPageStateContext();
   const snap = useSnapshot(state) as State;
   const elements = getElements(snap);
   const reactFlowWrapperRef = useRef<HTMLDivElement>(null);
@@ -43,6 +43,11 @@ export default function Schema() {
           elements={elements}
           edgeTypes={edgeTypes}
           onLoad={(instance) => (reactFlowInstanceRef.current = instance)}
+          onConnect={({ source, target }) => {
+            if (!source || !target) return;
+            snap.beginAddEdgeMode(source, target);
+            snap.finishAddEdgeMode("TODO", "TODO", "TODO", "TODO");
+          }}
           onClick={clickHandler}
         >
           <MiniMap nodeBorderRadius={2} />
@@ -63,7 +68,7 @@ function useAddFormatMode(
     (actions) => actions.setSelectedElements
   );
   if (state.mode.type !== "add-format") return {};
-  const clickHandler: React.MouseEventHandler = (e) => {
+  const clickHandler: React.MouseEventHandler = async (e) => {
     const reactFlowWrapper = reactFlowWrapperRef.current;
     const reactFlowInstance = reactFlowInstanceRef.current;
     if (!reactFlowWrapper || !reactFlowInstance) throw new Error();
@@ -72,9 +77,7 @@ function useAddFormatMode(
       x: e.clientX - reactFlowBounds.left,
       y: e.clientY - reactFlowBounds.top,
     });
-    const id = newFormatId();
-    state.finishAddFormatMode(
-      id,
+    const id = await state.finishAddFormatMode(
       x - nodeSize.width / 2,
       y - nodeSize.height / 2
     );

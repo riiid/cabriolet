@@ -3472,6 +3472,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@riiid/cabriolet-convert-plan-executer", "workspace:convert-plan-executer"],
             ["@riiid/cabriolet-convert-planner", "workspace:convert-planner"],
             ["@riiid/cabriolet-hash-fns", "workspace:hash-fns"],
+            ["@riiid/cabriolet-proto", "workspace:proto"],
             ["@riiid/cabriolet-schema", "workspace:schema"],
             ["@riiid/cabriolet-service", "workspace:service"],
             ["@riiid/cabriolet-service-impl-memory", "workspace:service-impl/memory"],

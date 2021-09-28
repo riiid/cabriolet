@@ -11,8 +11,9 @@ import convertPlanner from "@riiid/cabriolet-convert-planner";
 import createMemoryStorage from "@riiid/cabriolet-service-impl-memory/lib/storage";
 import createMemoryRegistry from "@riiid/cabriolet-service-impl-memory/lib/registry";
 import { createService } from "@riiid/cabriolet-service";
+import { Service } from "@riiid/cabriolet-proto/lib/services/riiid/kvf/KvfService";
 
-export default function createBrowserMemoryService() {
+export default function createBrowserMemoryService(): Service {
   const memoryStorage = createMemoryStorage();
   const memoryRegistry = createMemoryRegistry();
   const getSrcDataFn = getGetSrcData(fetchData, hashFns, toUint8Array);
