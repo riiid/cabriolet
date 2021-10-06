@@ -2,7 +2,7 @@ import { Registry } from "@riiid/cabriolet-service";
 
 export interface CreateAzureRegistryConfig {}
 export default function createAzureRegistry(
-  config: CreateAzureRegistryConfig,
+  config: CreateAzureRegistryConfig
 ): Registry {
   return {
     async getSchema() {
