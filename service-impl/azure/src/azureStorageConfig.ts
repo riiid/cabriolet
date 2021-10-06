@@ -1,5 +1,5 @@
-import {BlobClient, BlobServiceClient, ContainerClient} from "@azure/storage-blob";
+import { ContainerClient } from "@azure/storage-blob";
 
 export interface AzureStorageConfig {
-  azureContainerClient: ContainerClient
+  azureContainerClient: ContainerClient;
 }
