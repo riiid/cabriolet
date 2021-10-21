@@ -12,7 +12,6 @@
     "@riiid/cabriolet-proto": "workspace:proto",
     "@riiid/cabriolet-schema": "workspace:schema",
     "@riiid/cabriolet-service": "workspace:service",
-    "@types/pg": "^8.6.1",
     "pg": "^8.7.1",
     "postgres-migrations": "^5.3.0"
   },

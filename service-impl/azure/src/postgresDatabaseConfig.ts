@@ -1,5 +1,5 @@
-import {Pool, PoolClient} from "pg";
+import { Pool, PoolClient } from "pg";
 
 export interface PostgresDatabaseConfig {
-  pool: Pool
+  pool: Pool;
 }

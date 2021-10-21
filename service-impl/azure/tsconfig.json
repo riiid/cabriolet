@@ -8,6 +8,7 @@
     "module": "esnext",
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["@types/jest"]
+    "types": ["@types/jest"],
+    "noImplicitAny": false
   }
 }
