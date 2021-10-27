@@ -9,13 +9,14 @@
     "clean:tsc": "rm -rf lib",
     "build": "yarn build:pollapo && yarn build:pb && yarn build:tsc",
     "build:pollapo": "pollapo install",
-    "build:pb": "pb gen ts -o gen --proto-path .pollapo --remove-ts-file-extension-in-import-statement riiid/interface-kvf-store/service.proto",
+    "build:pb": "pb-gen-ts -o gen --entry-path .pollapo",
     "build:tsc": "tsc"
   },
   "files": [
     "/lib/**/*"
   ],
   "devDependencies": {
+    "pbkit": "^0.0.21",
     "typescript": "^4.4.3"
   }
 }
