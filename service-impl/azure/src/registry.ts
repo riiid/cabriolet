@@ -1,36 +1,47 @@
 import { Registry } from "@riiid/cabriolet-service";
+import { PostgresDatabaseConfig } from "./postgresDatabaseConfig";
+import * as repository from "./registryRepository";
+import { Type as Schema } from "../../../proto/lib/messages/riiid/kvf/Schema";
 
-export interface CreateAzureRegistryConfig {}
 export default function createAzureRegistry(
-  config: CreateAzureRegistryConfig
+  config: PostgresDatabaseConfig
 ): Registry {
   return {
     async getSchema() {
-      return {} as any; // TODO
+      const schema = await repository.getSchema(config.pool);
+      return { schema };
     },
     async createFormat(req) {
-      return {} as any; // TODO
+      const format = await repository.createFormat(config.pool, req);
+      return { formatId: format.id };
     },
     async deleteFormat(req) {
-      return {} as any; // TODO
+      await repository.deleteFormat(config.pool, req);
+      return {};
     },
     async setParent(req) {
-      return {} as any; // TODO
+      await repository.addParentFormatId(config.pool, req);
+      return {};
     },
     async deleteParent(req) {
-      return {} as any; // TODO
+      await repository.deleteParentFormatId(config.pool, req);
+      return {};
     },
     async appendValidator(req) {
-      return {} as any; // TODO
+      const res = await repository.createValidator(config.pool, req);
+      return { validatorId: res.validatorId };
     },
     async removeValidator(req) {
-      return {} as any; // TODO
+      await repository.deleteValidator(config.pool, req);
+      return {};
     },
     async createConverter(req) {
-      return {} as any; // TODO
+      const res = await repository.createConverter(config.pool, req);
+      return { converterId: res.converterId };
     },
     async deleteConverter(req) {
-      return {} as any; // TODO
+      await repository.deleteConverter(config.pool, req);
+      return {};
     },
   };
 }
