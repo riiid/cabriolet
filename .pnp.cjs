@@ -3486,7 +3486,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./proto/",
           "packageDependencies": [
             ["@riiid/cabriolet-proto", "workspace:proto"],
-            ["pbkit", "npm:0.0.21"],
+            ["pbkit", "npm:0.0.22"],
             ["typescript", "patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"]
           ],
           "linkType": "SOFT",
@@ -9872,10 +9872,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["pbkit", [
-        ["npm:0.0.21", {
-          "packageLocation": "./.yarn/unplugged/pbkit-npm-0.0.21-fdf29e0e6a/node_modules/pbkit/",
+        ["npm:0.0.22", {
+          "packageLocation": "./.yarn/unplugged/pbkit-npm-0.0.22-fb6c3f02e0/node_modules/pbkit/",
           "packageDependencies": [
-            ["pbkit", "npm:0.0.21"],
+            ["pbkit", "npm:0.0.22"],
             ["@yarnpkg/fslib", "npm:2.6.0"],
             ["@yarnpkg/libzip", "npm:2.2.2"],
             ["core-js", "npm:3.18.1"],
