@@ -1,7 +1,6 @@
 {
   "name": "@riiid/cabriolet-convert-plan-executer",
   "packageManager": "yarn@3.0.1",
-  "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {

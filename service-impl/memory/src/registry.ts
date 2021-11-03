@@ -5,19 +5,16 @@ import {
   createFormat,
   deleteConverter,
   deleteFormat,
-  deleteParent,
   newConverterId,
   newFormatId,
   newValidatorId,
   removeValidator,
-  setParent,
 } from "@riiid/cabriolet-schema";
 import { Registry } from "@riiid/cabriolet-service";
 
 export default function createMemoryRegistry(): Registry {
   let schema: Schema = {
     formats: [],
-    edges: [],
     validators: [],
     converters: [],
   };
@@ -32,14 +29,6 @@ export default function createMemoryRegistry(): Registry {
     },
     async deleteFormat(req) {
       schema = deleteFormat(schema, req);
-      return {};
-    },
-    async setParent(req) {
-      schema = setParent(schema, req);
-      return {};
-    },
-    async deleteParent(req) {
-      schema = deleteParent(schema, req);
       return {};
     },
     async appendValidator(req) {

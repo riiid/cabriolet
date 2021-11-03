@@ -1,12 +1,12 @@
 {
   "name": "@riiid/cabriolet-convert-planner",
   "packageManager": "yarn@3.0.1",
-  "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "clear_jest": "jest --clearCache"
   },
   "files": [
     "/lib/**/*"

@@ -11,7 +11,7 @@ export const newConverterId = () => "cvt_" + nanoid();
 export function createFormat(
   schema: kvf.Schema,
   { formatName, formatDescription }: kvf.CreateFormatRequest,
-  formatId = newFormatId(),
+  formatId = newFormatId()
 ): kvf.Schema {
   const format = {
     id: formatId,
@@ -28,44 +28,11 @@ export function createFormat(
 
 export function deleteFormat(
   schema: kvf.Schema,
-  { formatId }: kvf.DeleteFormatRequest,
+  { formatId }: kvf.DeleteFormatRequest
 ): kvf.Schema {
   return {
     ...schema,
     formats: schema.formats.filter((format) => format.id !== formatId),
-  };
-}
-
-export function setParent(
-  schema: kvf.Schema,
-  { formatId, parentFormatId }: kvf.SetParentRequest,
-): kvf.Schema {
-  // TODO: check ancestor
-  return {
-    ...schema,
-    formats: schema.formats.map((format) => {
-      if (format.id !== formatId) return format;
-      return {
-        ...format,
-        parentFormatId,
-      };
-    }),
-  };
-}
-
-export function deleteParent(
-  schema: kvf.Schema,
-  { formatId }: kvf.DeleteParentRequest,
-): kvf.Schema {
-  return {
-    ...schema,
-    formats: schema.formats.map((format) => {
-      if (format.id !== formatId) return format;
-      return {
-        ...format,
-        parentFormatId: undefined,
-      };
-    }),
   };
 }
 
@@ -78,7 +45,7 @@ export function appendValidator(
     validatorSrc,
     validatorIntegrity,
   }: kvf.AppendValidatorRequest,
-  validatorId = newValidatorId(),
+  validatorId = newValidatorId()
 ): kvf.Schema {
   const validator = {
     id: validatorId,
@@ -102,7 +69,7 @@ export function appendValidator(
 
 export function removeValidator(
   schema: kvf.Schema,
-  { formatId, validatorId }: kvf.RemoveValidatorRequest,
+  { formatId, validatorId }: kvf.RemoveValidatorRequest
 ): kvf.Schema {
   return {
     ...schema,
@@ -111,12 +78,12 @@ export function removeValidator(
       return {
         ...format,
         validatorIds: format.validatorIds.filter(
-          (validatorId) => validatorId !== validatorId,
+          (validatorId) => validatorId !== validatorId
         ),
       };
     }),
     validators: schema.validators.filter(
-      (validator) => validator.id !== validatorId,
+      (validator) => validator.id !== validatorId
     ),
   };
 }
@@ -131,39 +98,33 @@ export function createConverter(
     converterSrc,
     converterIntegrity,
   }: kvf.CreateConverterRequest,
-  converterId = newConverterId(),
+  converterId = newConverterId()
 ): kvf.Schema {
   const converter = {
     id: converterId,
+    fromFormatId: fromFormatId,
+    toFormatId: toFormatId,
     name: converterName,
     description: converterDescription,
     src: converterSrc,
     integrity: converterIntegrity,
   };
-  const edge = {
-    fromFormatId,
-    toFormatId,
-    converterId: converter.id,
-  };
+
   // TODO: check duplicate edge
   return {
     ...schema,
-    edges: [...schema.edges, edge],
     converters: [...schema.converters, converter],
   };
 }
 
 export function deleteConverter(
   schema: kvf.Schema,
-  { converterId }: kvf.DeleteConverterRequest,
+  { converterId }: kvf.DeleteConverterRequest
 ): kvf.Schema {
   return {
     ...schema,
-    edges: schema.edges.filter(
-      (edge) => edge.converterId !== converterId,
-    ),
     converters: schema.converters.filter(
-      (converter) => converter.id !== converterId,
+      (converter) => converter.fromFormatId !== converterId
     ),
   };
 }

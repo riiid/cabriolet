@@ -1,7 +1,6 @@
 import { Registry } from "@riiid/cabriolet-service";
 import { PostgresDatabaseConfig } from "./postgresDatabaseConfig";
 import * as repository from "./registryRepository";
-import { Type as Schema } from "../../../proto/lib/messages/riiid/kvf/Schema";
 
 export default function createAzureRegistry(
   config: PostgresDatabaseConfig
@@ -17,14 +16,6 @@ export default function createAzureRegistry(
     },
     async deleteFormat(req) {
       await repository.deleteFormat(config.pool, req);
-      return {};
-    },
-    async setParent(req) {
-      await repository.addParentFormatId(config.pool, req);
-      return {};
-    },
-    async deleteParent(req) {
-      await repository.deleteParentFormatId(config.pool, req);
       return {};
     },
     async appendValidator(req) {

@@ -59,7 +59,6 @@ describe("CreateRegistryTest", () => {
 
       // then
       expect(res.schema!.formats).toEqual([]);
-      expect(res.schema!.edges).toEqual([]);
       expect(res.schema!.converters).toEqual([]);
       expect(res.schema!.validators).toEqual([]);
     });
@@ -107,80 +106,6 @@ describe("CreateRegistryTest", () => {
         formatDescription
       );
       expect(afterSchema.schema!!.formats.length).toEqual(0);
-    });
-  });
-
-  describe("setParent", () => {
-    it("when set parent then parent format id is added successfully in the format", async () => {
-      // given
-      const formatName = crypto.randomUUID() + "_formatName";
-      const formatDescription = crypto.randomUUID() + "_formatDescription";
-      const parentFormatId = crypto.randomUUID() + "_parentFormatId";
-      const { formatId } = await registry.createFormat({
-        formatName: formatName,
-        formatDescription: formatDescription,
-      });
-
-      // when
-      registry.setParent({
-        formatId: formatId,
-        parentFormatId: parentFormatId,
-      });
-      const res = await registry.getSchema({});
-
-      // then
-      console.log(res.schema!.formats);
-      expect(res.schema!!.formats[0].parentFormatId).toEqual(parentFormatId);
-      // res.then(schema => {
-      //     expect(schema.schema!!.formats[0].parentFormatId).toEqual(parentFormatId)
-      //
-      // }
-      // )
-      expect(res.schema!!.formats[0].id).toEqual(formatId);
-      // res.then(schema => expect(schema.schema!!.formats[0].id).toEqual(formatId))
-    });
-  });
-
-  describe("deleteParent", () => {
-    it("when delete parent then parent format id does not exist in the format", () => {
-      // given
-      const formatName = crypto.randomUUID() + "_formatName";
-      const formatDescription = crypto.randomUUID() + "_formatDescription";
-      const parentFormatId = crypto.randomUUID() + "_parentFormatId";
-      registry
-        .createFormat({
-          formatName: formatName,
-          formatDescription: formatDescription,
-        })
-        .then((res) => {
-          const formatId = res.formatId;
-          registry.setParent({
-            formatId: formatId,
-            parentFormatId: parentFormatId,
-          });
-
-          // when
-          const beforeSchema = registry.getSchema({});
-          registry.deleteParent({
-            formatId: formatId,
-          });
-          const afterSchema = registry.getSchema({});
-
-          // then
-          beforeSchema.then((schema) =>
-            expect(schema.schema!!.formats[0].parentFormatId).toEqual(
-              parentFormatId
-            )
-          );
-          beforeSchema.then((schema) =>
-            expect(schema.schema!!.formats[0].id).toEqual(formatId)
-          );
-          afterSchema.then((schema) =>
-            expect(schema.schema!!.formats[0].parentFormatId).toEqual(
-              "undefined"
-            )
-          );
-        });
     });
   });
 
@@ -301,16 +226,12 @@ describe("CreateRegistryTest", () => {
       const schema = await registry.getSchema({});
 
       // then
-      expect(schema.schema!!.edges[0].toFormatId).toEqual(
+      expect(schema.schema!!.converters[0].toFormatId).toEqual(
         toFormatId.toString()
       );
-      expect(schema.schema!!.edges[0].fromFormatId).toEqual(
+      expect(schema.schema!!.converters[0].fromFormatId).toEqual(
         fromFormatId.toString()
       );
-      expect(schema.schema!!.edges[0].converterId).toEqual(
-        converterId.converterId.toString()
-      );
-      expect(schema.schema!!.converters[0].id).toEqual(converterId.converterId);
       expect(schema.schema!!.converters[0].name).toEqual(converterName);
       expect(schema.schema!!.converters[0].src).toEqual(converterSrc);
       expect(schema.schema!!.converters[0].integrity).toEqual(
@@ -355,7 +276,6 @@ describe("CreateRegistryTest", () => {
       const schema = await registry.getSchema({});
 
       // then
-      expect(schema.schema!!.edges.length).toEqual(0);
       expect(schema.schema!!.converters.length).toEqual(0);
     });
   });

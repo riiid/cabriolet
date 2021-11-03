@@ -1,5 +1,2 @@
 deps:
-  - riiid/interface-kvf-store@main
-root:
-  lock:
-    riiid/interface-kvf-store@main: f3749fd8ab95ec6fdc29d445aeb0bca2719ff0fd
+  - riiid/interface-kvf-store@v1.0.0-test2

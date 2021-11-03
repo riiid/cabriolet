@@ -8,7 +8,6 @@ import {
   Format,
   RemoveValidatorRequest,
   Schema,
-  SetParentRequest,
   Validator,
 } from "../../../proto/lib/messages/riiid/kvf";
 import { Type } from "../../../proto/lib/messages/riiid/kvf/Format";
@@ -36,29 +35,6 @@ export async function deleteFormat(
   const sql = `DELETE FROM formats WHERE id = ${formatId}`;
   await client.query(sql);
   await client.release();
-}
-
-export async function addParentFormatId(
-  pool: Pool,
-  { formatId, parentFormatId }: SetParentRequest
-) {
-  const client = await pool.connect();
-  const queryConfig = {
-    text: `UPDATE formats SET "parentFormatId" = $1 WHERE id = $2`,
-    values: [parentFormatId, formatId],
-  };
-  await client.query(queryConfig);
-  await client.release();
-}
-
-export async function deleteParentFormatId(
-  pool: Pool,
-  { formatId }: DeleteFormatRequest
-) {
-  const client = await pool.connect();
-  const sql = `UPDATE formats SET "parentFormatId" = 'undefined' WHERE id = ${formatId}`;
-  await client.query(sql);
-  client.release();
 }
 
 export async function createValidator(
@@ -217,7 +193,6 @@ export async function getSchema(pool: Pool): Promise<Schema> {
   const converters = await client.query(converterSql);
   const schema: Schema = {
     formats: formats,
-    edges: edges.rows,
     validators: validators.rows,
     converters: converters.rows,
   };

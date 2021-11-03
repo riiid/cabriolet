@@ -6,22 +6,22 @@ export interface GetConverterFn {
   (fromFormatId: string, toFormatId: string): Converter;
 }
 export class GetConverterFnError extends Error {}
+
 export function getGetConverterFn(schema: Schema): GetConverterFn {
-  const edges = arrToMap(schema.edges, (edge) => {
-    return getEdgeId(edge.fromFormatId, edge.toFormatId);
-  });
-  const converters = arrToMap(schema.converters, (converter) => converter.id);
   return function getConverterFn(fromFormatId, toFormatId) {
-    const edgeId = getEdgeId(fromFormatId, toFormatId);
-    if (!(edgeId in edges)) {
-      throw new GetConverterFnError(
+    const converters = arrToMap(
+      schema.converters,
+      (converter) => `${converter.fromFormatId}${converter.toFormatId}`
+    );
+    return (
+      converters[`${fromFormatId}${toFormatId}`] ??
+      throwGetConverterFnError(
         "invalid edge: " + fromFormatId + " -> " + toFormatId
-      );
-    }
-    const edge = edges[edgeId];
-    return converters[edge.converterId];
+      )
+    );
   };
 }
-function getEdgeId(fromFormatId: string, toFormatId: string): string {
-  return fromFormatId + "\0" + toFormatId;
+
+function throwGetConverterFnError(errorMessage: string): never {
+  throw new GetConverterFnError(errorMessage);
 }

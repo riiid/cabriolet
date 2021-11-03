@@ -20,7 +20,7 @@ export default function createBrowserMemoryService(): Service {
   const convertPlanExecuter = getExecConvertPlanFn(
     getSrcDataFn,
     u8sInU8sOut,
-    u8sInVoidOut,
+    u8sInVoidOut
   );
   const service = createService({
     storage: memoryStorage,
