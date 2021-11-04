@@ -41,9 +41,8 @@ export default function createMemoryRegistry(): Registry {
       return {};
     },
     async createConverter(req) {
-      const converterId = newConverterId();
-      schema = createConverter(schema, req, converterId);
-      return { converterId };
+      schema = createConverter(schema, req);
+      return { fromFormatId: req.fromFormatId, toFormatId: req.toFormatId };
     },
     async deleteConverter(req) {
       schema = deleteConverter(schema, req);

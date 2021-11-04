@@ -28,7 +28,7 @@ export default function createAzureRegistry(
     },
     async createConverter(req) {
       const res = await repository.createConverter(config.pool, req);
-      return { converterId: res.converterId };
+      return { fromFormatId: res.fromFormatId, toFormatId: res.toFormatId };
     },
     async deleteConverter(req) {
       await repository.deleteConverter(config.pool, req);

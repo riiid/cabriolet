@@ -10,7 +10,6 @@ import {
   Schema,
   Validator,
 } from "../../../proto/lib/messages/riiid/kvf";
-import { Type } from "../../../proto/lib/messages/riiid/kvf/Format";
 
 export async function createFormat(
   pool: Pool,
@@ -98,8 +97,10 @@ export async function createConverter(
 ) {
   const client = await pool.connect();
   const converterSqlConfig = {
-    text: `INSERT INTO converters(name, description, src, integrity) VALUES($1, $2, $3, $4) RETURNING *`,
+    text: `INSERT INTO converters(fromFormatId, toFormatId, name, description, src, integrity) VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
     values: [
+      fromFormatId,
+      toFormatId,
       converterName,
       converterDescription,
       converterSrc,
@@ -107,46 +108,21 @@ export async function createConverter(
     ],
   };
   const converter = (await client.query(converterSqlConfig)).rows[0];
-  await createEdge(pool, fromFormatId, toFormatId, converter.id);
+  client.release();
   return {
-    converterId: converter.id,
+    fromFormatId: converter.fromFormatId as string,
+    toFormatId: converter.toFormatId as string,
   };
 }
 
 export async function deleteConverter(
   pool: Pool,
-  { converterId }: DeleteConverterRequest
+  { fromFormatId, toFormatId }: DeleteConverterRequest
 ) {
   const client = await pool.connect();
-  const queryConfig = {
-    text: `DELETE FROM converters WHERE id = $1`,
-    values: [converterId],
-  };
-  await client.query(queryConfig);
-  await deleteEdge(pool, converterId);
-}
-
-export async function deleteEdge(pool: Pool, converterId: string) {
-  const client = await pool.connect();
-  const queryConfig = {
-    text: `DELETE FROM edges WHERE "converterId" = $1`,
-    values: [converterId],
-  };
-  await client.query(queryConfig);
-}
-
-export async function createEdge(
-  pool: Pool,
-  fromFormatId: string,
-  toFormatId: string,
-  converterId: string
-) {
-  const client = await pool.connect();
-  const sqlConfig = {
-    text: `INSERT INTO edges("fromFormatId", "toFormatId", "converterId") VALUES($1, $2, $3)`,
-    values: [fromFormatId, toFormatId, converterId],
-  };
-  await client.query(sqlConfig);
+  const sql = `DELETE FROM converters WHERE fromFormatId = ${fromFormatId} AND toFormatId = ${toFormatId}`;
+  await client.query(sql);
+  client.release();
 }
 
 export async function getFormat(pool: Pool, formatId: string) {
@@ -185,8 +161,6 @@ export async function getSchema(pool: Pool): Promise<Schema> {
   const client = await pool.connect();
   const formatSql = "SELECT * FROM formats";
   const formats: Format[] = (await client.query(formatSql)).rows;
-  const edgeSql = "SELECT * FROM edges";
-  const edges = await client.query(edgeSql);
   const validatorSql = "SELECT * FROM validators";
   const validators = await client.query(validatorSql);
   const converterSql = "SELECT * FROM converters";

@@ -97,11 +97,9 @@ export function createConverter(
     converterDescription,
     converterSrc,
     converterIntegrity,
-  }: kvf.CreateConverterRequest,
-  converterId = newConverterId()
+  }: kvf.CreateConverterRequest
 ): kvf.Schema {
   const converter = {
-    id: converterId,
     fromFormatId: fromFormatId,
     toFormatId: toFormatId,
     name: converterName,
@@ -110,21 +108,29 @@ export function createConverter(
     integrity: converterIntegrity,
   };
 
-  // TODO: check duplicate edge
+  // Remove duplicated converter
+  const converters = schema.converters.filter(
+    (converter) =>
+      converter.fromFormatId !== fromFormatId &&
+      converter.toFormatId !== toFormatId
+  );
+
   return {
     ...schema,
-    converters: [...schema.converters, converter],
+    converters: [...converters, converter],
   };
 }
 
 export function deleteConverter(
   schema: kvf.Schema,
-  { converterId }: kvf.DeleteConverterRequest
+  { fromFormatId, toFormatId }: kvf.DeleteConverterRequest
 ): kvf.Schema {
   return {
     ...schema,
     converters: schema.converters.filter(
-      (converter) => converter.fromFormatId !== converterId
+      (converter) =>
+        converter.fromFormatId !== fromFormatId &&
+        converter.toFormatId !== toFormatId
     ),
   };
 }

@@ -4,7 +4,6 @@ import { PostgresDatabaseConfig } from "./postgresDatabaseConfig";
 import { Registry } from "../../../service";
 import { migrate } from "postgres-migrations";
 import * as path from "path";
-import { Schema } from "../../../proto/lib/messages/riiid/kvf";
 import * as crypto from "crypto";
 
 let pool: Pool;
@@ -192,17 +191,17 @@ describe("CreateRegistryTest", () => {
   });
 
   describe("createConverter", () => {
-    it("when create converter then edge and converter are added", async () => {
+    it("when create converter then add converter", async () => {
       // given
       const formatName = crypto.randomUUID() + "_formatName";
       const formatDescription = crypto.randomUUID() + "_formatDescription";
-      const fromFormatId = (
+      const formatId1 = (
         await registry.createFormat({
           formatName: formatName,
           formatDescription: formatDescription,
         })
       ).formatId;
-      const toFormatId = (
+      const formatId2 = (
         await registry.createFormat({
           formatName: formatName,
           formatDescription: formatDescription,
@@ -215,9 +214,9 @@ describe("CreateRegistryTest", () => {
       const converterIntegrity = crypto.randomUUID() + "_converterIntegrity";
 
       // when
-      const converterId = await registry.createConverter({
-        fromFormatId: fromFormatId,
-        toFormatId: toFormatId,
+      const { fromFormatId, toFormatId } = await registry.createConverter({
+        fromFormatId: formatId1,
+        toFormatId: formatId2,
         converterName: converterName,
         converterDescription: converterDescription,
         converterSrc: converterSrc,
@@ -226,12 +225,8 @@ describe("CreateRegistryTest", () => {
       const schema = await registry.getSchema({});
 
       // then
-      expect(schema.schema!!.converters[0].toFormatId).toEqual(
-        toFormatId.toString()
-      );
-      expect(schema.schema!!.converters[0].fromFormatId).toEqual(
-        fromFormatId.toString()
-      );
+      expect(schema.schema!!.converters[0].fromFormatId).toEqual(fromFormatId);
+      expect(schema.schema!!.converters[0].toFormatId).toEqual(toFormatId);
       expect(schema.schema!!.converters[0].name).toEqual(converterName);
       expect(schema.schema!!.converters[0].src).toEqual(converterSrc);
       expect(schema.schema!!.converters[0].integrity).toEqual(
@@ -245,13 +240,13 @@ describe("CreateRegistryTest", () => {
       // given
       const formatName = crypto.randomUUID() + "_formatName";
       const formatDescription = crypto.randomUUID() + "_formatDescription";
-      const fromFormatId = (
+      const formatId1 = (
         await registry.createFormat({
           formatName: formatName,
           formatDescription: formatDescription,
         })
       ).formatId;
-      const toFormatId = (
+      const formatId2 = (
         await registry.createFormat({
           formatName: formatName,
           formatDescription: formatDescription,
@@ -262,9 +257,9 @@ describe("CreateRegistryTest", () => {
         crypto.randomUUID() + "_converterDescription";
       const converterSrc = crypto.randomUUID() + "_converterSrc";
       const converterIntegrity = crypto.randomUUID() + "_converterIntegrity";
-      const { converterId } = await registry.createConverter({
-        fromFormatId: fromFormatId,
-        toFormatId: toFormatId,
+      const { fromFormatId, toFormatId } = await registry.createConverter({
+        fromFormatId: formatId1,
+        toFormatId: formatId2,
         converterName: converterName,
         converterDescription: converterDescription,
         converterSrc: converterSrc,
@@ -272,7 +267,7 @@ describe("CreateRegistryTest", () => {
       });
 
       // when
-      await registry.deleteConverter({ converterId });
+      await registry.deleteConverter({ fromFormatId, toFormatId });
       const schema = await registry.getSchema({});
 
       // then
