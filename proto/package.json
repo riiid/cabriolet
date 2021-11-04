@@ -16,7 +16,7 @@
     "/lib/**/*"
   ],
   "devDependencies": {
-    "pbkit": "^0.0.21",
+    "pbkit": "^0.0.22",
     "typescript": "^4.4.3"
   }
 }
