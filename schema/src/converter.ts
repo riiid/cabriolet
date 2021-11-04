@@ -8,20 +8,19 @@ export interface GetConverterFn {
 export class GetConverterFnError extends Error {}
 
 export function getGetConverterFn(schema: Schema): GetConverterFn {
+  const converters = arrToMap(schema.converters, (converter) =>
+    getConverterId(converter.fromFormatId, converter.toFormatId)
+  );
   return function getConverterFn(fromFormatId, toFormatId) {
-    const converters = arrToMap(
-      schema.converters,
-      (converter) => `${converter.fromFormatId}${converter.toFormatId}`
-    );
-    return (
-      converters[`${fromFormatId}${toFormatId}`] ??
-      throwGetConverterFnError(
+    let res = converters[getConverterId(fromFormatId, toFormatId)];
+    if (!res)
+      throw new GetConverterFnError(
         "invalid edge: " + fromFormatId + " -> " + toFormatId
-      )
-    );
+      );
+    return res;
   };
 }
 
-function throwGetConverterFnError(errorMessage: string): never {
-  throw new GetConverterFnError(errorMessage);
+function getConverterId(fromFormatId: string, toFormatId: string): string {
+  return `${fromFormatId}${toFormatId}`;
 }
