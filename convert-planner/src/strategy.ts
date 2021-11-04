@@ -28,7 +28,7 @@ export function getPath(
  * get shortest path between ALL vertices
  * Time complexity: O(V^3)
  */
-export function floydWarshall(graph: number[][]): PathMap {
+function floydWarshall(graph: number[][]): PathMap {
   const n = graph.length;
   let dist = Array.from(Array(n), () => new Array(n).fill(0));
   let path = new Map<string, number[]>();
