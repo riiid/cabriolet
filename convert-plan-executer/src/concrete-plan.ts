@@ -3,16 +3,16 @@ export enum Instruction {
   convert,
 }
 
-interface InstructionBase<T extends Instruction> {
+interface InstructionType<T extends Instruction> {
   type: T;
   relatedConvertPlanIndex: number;
 }
 
-export interface Validate extends InstructionBase<Instruction.validate> {
+export interface Validate extends InstructionType<Instruction.validate> {
   formatId: string;
 }
 
-export interface Convert extends InstructionBase<Instruction.convert> {
+export interface Convert extends InstructionType<Instruction.convert> {
   fromFormatId: string;
   toFormatId: string;
 }
