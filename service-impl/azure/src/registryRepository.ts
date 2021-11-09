@@ -120,7 +120,7 @@ export async function deleteConverter(
   { fromFormatId, toFormatId }: DeleteConverterRequest
 ) {
   const client = await pool.connect();
-  const sql = `DELETE FROM converters WHERE "fromFormatId" = ${fromFormatId} AND "toFormatId" = ${toFormatId}`;
+  const sql = `DELETE FROM converters WHERE "fromFormatId" = '${fromFormatId}' AND "toFormatId" = '${toFormatId}'`;
   await client.query(sql);
   client.release();
 }

@@ -18,8 +18,8 @@ create table if not exists validators
 create table if not exists converters
 (
     id serial not null primary key,
-    "fromFormatId" integer,
-    "toFormatId" integer,
+    "fromFormatId" varchar(255),
+    "toFormatId" varchar(255),
     name varchar(255),
     description varchar(255),
     src varchar(255),
