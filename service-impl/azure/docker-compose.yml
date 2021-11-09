@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:10.5
+    restart: always
+    environment:
+      - POSTGRES_USER=test-user
+      - POSTGRES_DB=test-db
+    ports:
+      - "5432:5432"
+
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    hostname: azurite
+    command: azurite-blob --blobHost 0.0.0.0 --loose
+    ports:
+      - "10000:10000"

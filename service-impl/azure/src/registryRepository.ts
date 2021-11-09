@@ -97,7 +97,7 @@ export async function createConverter(
 ) {
   const client = await pool.connect();
   const converterSqlConfig = {
-    text: `INSERT INTO converters(fromFormatId, toFormatId, name, description, src, integrity) VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
+    text: `INSERT INTO converters("fromFormatId", "toFormatId", name, description, src, integrity) VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
     values: [
       fromFormatId,
       toFormatId,
@@ -120,7 +120,7 @@ export async function deleteConverter(
   { fromFormatId, toFormatId }: DeleteConverterRequest
 ) {
   const client = await pool.connect();
-  const sql = `DELETE FROM converters WHERE fromFormatId = ${fromFormatId} AND toFormatId = ${toFormatId}`;
+  const sql = `DELETE FROM converters WHERE "fromFormatId" = ${fromFormatId} AND "toFormatId" = ${toFormatId}`;
   await client.query(sql);
   client.release();
 }

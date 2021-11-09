@@ -8,13 +8,12 @@ import * as crypto from "crypto";
 
 let pool: Pool;
 let registry: Registry;
-const dbName = "postgres";
-const user = "postgres";
-const pwd = "yourpassword";
+const dbName = "test-db";
+const user = "test-user";
 const host = "localhost";
 const port = "5432";
 const migrationsDirectory = path.resolve("./src/migrations");
-const connectionSting = `postgres://${user}:${pwd}@${host}:${port}/${dbName}`;
+const connectionSting = `postgres://${user}@${host}:${port}/${dbName}`;
 
 beforeAll(async () => {
   pool = await new Pool({
@@ -39,8 +38,6 @@ afterEach(async () => {
   const sql = `DELETE
                FROM formats;
   DELETE
-  FROM edges;
-  DELETE
   FROM converters;
   DELETE
   FROM validators`;
@@ -48,7 +45,9 @@ afterEach(async () => {
   await client.release();
 });
 
-afterAll(() => {});
+afterAll(() => {
+  pool.end();
+});
 
 describe("CreateRegistryTest", () => {
   describe("getSchema", () => {
@@ -124,7 +123,7 @@ describe("CreateRegistryTest", () => {
       });
 
       // when
-      registry
+      await registry
         .appendValidator({
           formatId: formatId,
           validatorName: validatorName,
@@ -236,7 +235,7 @@ describe("CreateRegistryTest", () => {
   });
 
   describe("deleteConverter", () => {
-    it("when delete converter then edge and converter are deleted", async () => {
+    it("when delete converter then converter are deleted", async () => {
       // given
       const formatName = crypto.randomUUID() + "_formatName";
       const formatDescription = crypto.randomUUID() + "_formatDescription";
