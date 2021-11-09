@@ -1,7 +1,7 @@
 import { Pool, PoolClient } from "pg";
-import createAzureRegistry from "./registry";
-import { PostgresDatabaseConfig } from "./postgresDatabaseConfig";
-import { Registry } from "../../../service";
+import createAzureRegistry from "../src";
+import { PostgresDatabaseConfig } from "../src/postgresDatabaseConfig";
+import { Registry } from "@riiid/cabriolet-service";
 import { migrate } from "postgres-migrations";
 import * as path from "path";
 import * as crypto from "crypto";

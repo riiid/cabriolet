@@ -1980,6 +1980,36 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@riiid/cabriolet-registry-impl-memory@workspace:registry-impl/memory":
+  version: 0.0.0-use.local
+  resolution: "@riiid/cabriolet-registry-impl-memory@workspace:registry-impl/memory"
+  dependencies:
+    "@riiid/cabriolet-proto": "workspace:proto"
+    "@riiid/cabriolet-schema": "workspace:schema"
+    "@riiid/cabriolet-service": "workspace:service"
+    typescript: ^4.4.3
+  languageName: unknown
+  linkType: soft
+
+"@riiid/cabriolet-registry-impl-postgres@workspace:registry-impl/postgres":
+  version: 0.0.0-use.local
+  resolution: "@riiid/cabriolet-registry-impl-postgres@workspace:registry-impl/postgres"
+  dependencies:
+    "@babel/core": ^7.15.0
+    "@babel/preset-env": ^7.15.0
+    "@babel/preset-typescript": ^7.15.0
+    "@riiid/cabriolet-proto": "workspace:proto"
+    "@riiid/cabriolet-service": "workspace:service"
+    "@types/jest": ^27.0.1
+    "@types/node": ^16.11.7
+    babel-jest: ^27.0.6
+    jest: ^27.0.6
+    pg: ^8.7.1
+    postgres-migrations: ^5.3.0
+    typescript: ^4.4.3
+  languageName: unknown
+  linkType: soft
+
 "@riiid/cabriolet-schema@workspace:schema":
   version: 0.0.0-use.local
   resolution: "@riiid/cabriolet-schema@workspace:schema"
@@ -1997,41 +2027,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@riiid/cabriolet-service-impl-azure@workspace:service-impl/azure":
-  version: 0.0.0-use.local
-  resolution: "@riiid/cabriolet-service-impl-azure@workspace:service-impl/azure"
-  dependencies:
-    "@azure/identity": ^1.5.2
-    "@azure/storage-blob": ^12.8.0
-    "@babel/core": ^7.15.0
-    "@babel/preset-env": ^7.15.0
-    "@babel/preset-typescript": ^7.15.0
-    "@riiid/cabriolet-proto": "workspace:proto"
-    "@riiid/cabriolet-schema": "workspace:schema"
-    "@riiid/cabriolet-service": "workspace:service"
-    "@riiid/cabriolet-service-test": "workspace:service-test"
-    "@types/jest": ^27.0.1
-    "@types/node": ^16.7.4
-    babel-jest: ^27.0.6
-    jest: ^27.0.6
-    pg: ^8.7.1
-    postgres-migrations: ^5.3.0
-    typescript: ^4.4.3
-  languageName: unknown
-  linkType: soft
-
-"@riiid/cabriolet-service-impl-memory@workspace:service-impl/memory":
-  version: 0.0.0-use.local
-  resolution: "@riiid/cabriolet-service-impl-memory@workspace:service-impl/memory"
-  dependencies:
-    "@riiid/cabriolet-proto": "workspace:proto"
-    "@riiid/cabriolet-schema": "workspace:schema"
-    "@riiid/cabriolet-service": "workspace:service"
-    "@riiid/cabriolet-service-test": "workspace:service-test"
-    typescript: ^4.4.3
-  languageName: unknown
-  linkType: soft
-
 "@riiid/cabriolet-service-preset-browser-memory@workspace:service-preset/browser-memory":
   version: 0.0.0-use.local
   resolution: "@riiid/cabriolet-service-preset-browser-memory@workspace:service-preset/browser-memory"
@@ -2040,9 +2035,10 @@ __metadata:
     "@riiid/cabriolet-convert-planner": "workspace:convert-planner"
     "@riiid/cabriolet-hash-fns": "workspace:hash-fns"
     "@riiid/cabriolet-proto": "workspace:proto"
+    "@riiid/cabriolet-registry-impl-memory": "workspace:registry-impl/memory"
     "@riiid/cabriolet-schema": "workspace:schema"
     "@riiid/cabriolet-service": "workspace:service"
-    "@riiid/cabriolet-service-impl-memory": "workspace:service-impl/memory"
+    "@riiid/cabriolet-storage-impl-memory": "workspace:storage-impl/memory"
     js-base64: ^3.7.2
     typescript: ^4.4.3
   languageName: unknown
@@ -2063,7 +2059,35 @@ __metadata:
   resolution: "@riiid/cabriolet-service@workspace:service"
   dependencies:
     "@riiid/cabriolet-proto": "workspace:proto"
-    "@riiid/cabriolet-schema": "workspace:schema"
+    typescript: ^4.4.3
+  languageName: unknown
+  linkType: soft
+
+"@riiid/cabriolet-storage-impl-azure@workspace:storage-impl/azure":
+  version: 0.0.0-use.local
+  resolution: "@riiid/cabriolet-storage-impl-azure@workspace:storage-impl/azure"
+  dependencies:
+    "@azure/identity": ^1.5.2
+    "@azure/storage-blob": ^12.8.0
+    "@babel/core": ^7.15.0
+    "@babel/preset-env": ^7.15.0
+    "@babel/preset-typescript": ^7.15.0
+    "@riiid/cabriolet-service": "workspace:service"
+    "@types/jest": ^27.0.1
+    "@types/node": ^16.11.7
+    babel-jest: ^27.0.6
+    jest: ^27.0.6
+    pg: ^8.7.1
+    postgres-migrations: ^5.3.0
+    typescript: ^4.4.3
+  languageName: unknown
+  linkType: soft
+
+"@riiid/cabriolet-storage-impl-memory@workspace:storage-impl/memory":
+  version: 0.0.0-use.local
+  resolution: "@riiid/cabriolet-storage-impl-memory@workspace:storage-impl/memory"
+  dependencies:
+    "@riiid/cabriolet-service": "workspace:service"
     typescript: ^4.4.3
   languageName: unknown
   linkType: soft
@@ -2506,6 +2530,13 @@ __metadata:
   version: 16.7.1
   resolution: "@types/node@npm:16.7.1"
   checksum: fcf1a2c7b1f19c2201574b2110176b49c6efd824a39b2ed8ac3e6688740e2a35bef95a3334dfa345f4bd4873fd8b79d8ac8cfcc9fcd3d2f4f8f993c2c37ce4ab
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^16.11.7":
+  version: 16.11.7
+  resolution: "@types/node@npm:16.11.7"
+  checksum: 2706403e6efc4aa40fdce8f0b5d9884d5600c3c8610aedc7fa5e7e298d30366f7e8b7296028d52898dca3edef4c3e827b03bf20952c4780f13fa4e79864f7a86
   languageName: node
   linkType: hard
 

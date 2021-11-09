@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "rootDir": "src",
     "outDir": "lib",
     "declaration": true,
     "target": "esnext",
     "module": "esnext",
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["@types/jest"],
+    "types": ["@types/jest", "node"],
     "noImplicitAny": false
-  }
+  },
+  "include": ["test/**/*.test.ts"],
+  "files": ["src/index.ts"]
 }

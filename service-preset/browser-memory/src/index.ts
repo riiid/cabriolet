@@ -8,8 +8,8 @@ import {
   u8sInVoidOut,
 } from "@riiid/cabriolet-convert-plan-executer/lib/program/web-worker";
 import convertPlanner from "@riiid/cabriolet-convert-planner";
-import createMemoryStorage from "@riiid/cabriolet-service-impl-memory/lib/storage";
-import createMemoryRegistry from "@riiid/cabriolet-service-impl-memory/lib/registry";
+import createMemoryStorage from "@riiid/cabriolet-storage-impl-memory/lib/index";
+import createMemoryRegistry from "@riiid/cabriolet-registry-impl-memory/lib/index";
 import { createService } from "@riiid/cabriolet-service";
 import { Service } from "@riiid/cabriolet-proto/lib/services/riiid/kvf/KvfService";
 

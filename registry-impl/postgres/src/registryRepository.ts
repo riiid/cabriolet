@@ -9,7 +9,7 @@ import {
   RemoveValidatorRequest,
   Schema,
   Validator,
-} from "../../../proto/lib/messages/riiid/kvf";
+} from "@riiid/cabriolet-proto/lib/messages/riiid/kvf";
 
 export async function createFormat(
   pool: Pool,

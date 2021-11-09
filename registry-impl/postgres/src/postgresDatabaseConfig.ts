@@ -1,4 +1,4 @@
-import { Pool, PoolClient } from "pg";
+import { Pool } from "pg";
 
 export interface PostgresDatabaseConfig {
   pool: Pool;

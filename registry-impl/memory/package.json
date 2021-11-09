@@ -1,9 +1,9 @@
 {
-  "name": "@riiid/cabriolet-service-impl-memory",
+  "name": "@riiid/cabriolet-registry-impl-memory",
   "packageManager": "yarn@3.0.1",
   "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc -p tsconfig.build.json"
   },
   "files": [
     "/lib/**/*"
@@ -14,7 +14,6 @@
     "@riiid/cabriolet-service": "workspace:service"
   },
   "devDependencies": {
-    "@riiid/cabriolet-service-test": "workspace:service-test",
     "typescript": "^4.4.3"
   }
 }

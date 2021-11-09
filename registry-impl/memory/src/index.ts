@@ -5,7 +5,6 @@ import {
   createFormat,
   deleteConverter,
   deleteFormat,
-  newConverterId,
   newFormatId,
   newValidatorId,
   removeValidator,

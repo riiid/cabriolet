@@ -10,8 +10,9 @@
     "proto",
     "schema",
     "service",
-    "service-impl/*",
     "service-preset/*",
+    "registry-impl/*",
+    "storage-impl/*",
     "service-test"
   ],
   "devDependencies": {

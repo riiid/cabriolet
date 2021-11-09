@@ -1,5 +1,4 @@
 import { Type as Schema } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/Schema";
-import { Type as Converter } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/Converter";
 import { Service as KvfService } from "@riiid/cabriolet-proto/lib/services/riiid/kvf/KvfService";
 
 export interface CreateServiceConfig {

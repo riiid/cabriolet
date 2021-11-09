@@ -8,5 +8,7 @@
     "module": "esnext",
     "strict": true,
     "allowSyntheticDefaultImports": true
-  }
+  },
+  "include": ["test/**/*.test.ts"],
+  "files": ["src/index.ts"]
 }

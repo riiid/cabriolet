@@ -1,17 +1,15 @@
 {
-  "name": "@riiid/cabriolet-service",
+  "name": "@riiid/cabriolet-storage-impl-memory",
   "packageManager": "yarn@3.0.1",
   "type": "module",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc -p tsconfig.build.json"
   },
   "files": [
     "/lib/**/*"
   ],
   "dependencies": {
-    "@riiid/cabriolet-proto": "workspace:proto"
+    "@riiid/cabriolet-service": "workspace:service"
   },
   "devDependencies": {
     "typescript": "^4.4.3"
