@@ -9,7 +9,7 @@
     "clean:tsc": "rm -rf lib",
     "build": "yarn build:pollapo && yarn build:pb && yarn build:tsc",
     "build:pollapo": "pollapo install",
-    "build:pb": "pb-gen-ts -o gen --entry-path .pollapo",
+    "build:pb": "pb gen ts -o gen --proto-path .pollapo --ext-in-import ' ' riiid/interface-kvf-store/service.proto",
     "build:tsc": "tsc"
   },
   "files": [

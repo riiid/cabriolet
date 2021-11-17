@@ -1,57 +1,62 @@
-import { Type as ConvertPlan } from "@riiid/cabriolet-proto/lib/messages/riiid/kvf/ConvertPlan";
+export enum Instruction {
+  validate,
+  convert,
+}
 
-export type ConcretePlanEntry = Validate | Convert;
-
-interface ConcretePlanEntryBase<T extends string> {
+interface InstructionType<T extends Instruction> {
   type: T;
   relatedConvertPlanIndex: number;
 }
 
-export interface Validate extends ConcretePlanEntryBase<"validate"> {
+export interface Validate extends InstructionType<Instruction.validate> {
   formatId: string;
 }
 
-export interface Convert extends ConcretePlanEntryBase<"convert"> {
+export interface Convert extends InstructionType<Instruction.convert> {
   fromFormatId: string;
   toFormatId: string;
 }
 
+export type ConcretePlanEntry = Validate | Convert;
+
 export function* iterConcretePlan(
-  convertPlan: ConvertPlan,
+  formatIds: string[]
 ): Generator<ConcretePlanEntry> {
-  let currFormatId = convertPlan.fromFormatId;
-  yield {
-    type: "validate",
-    relatedConvertPlanIndex: -1,
-    formatId: currFormatId,
-  };
-  for (let index = 0; index < convertPlan.entries.length; ++index) {
-    const convertPlanEntry = convertPlan.entries[index].value;
-    if (!convertPlanEntry) continue;
-    const prevFormatId = currFormatId;
-    switch (convertPlanEntry.field) {
-      case "upcast":
-        currFormatId = convertPlanEntry.value.formatId;
-        yield {
-          type: "validate",
-          relatedConvertPlanIndex: index,
-          formatId: currFormatId,
-        };
-        break;
-      case "convert":
-        currFormatId = convertPlanEntry.value.formatId;
-        yield {
-          type: "convert",
-          relatedConvertPlanIndex: index,
-          fromFormatId: prevFormatId,
-          toFormatId: currFormatId,
-        };
-        yield {
-          type: "validate",
-          relatedConvertPlanIndex: index,
-          formatId: currFormatId,
-        };
-        break;
+  let index = 0;
+  for (const [fromFormatId, toFormatId] of iterEdges(formatIds)) {
+    // validate the starting vertex
+    if (index === 0) {
+      yield {
+        type: Instruction.validate,
+        relatedConvertPlanIndex: index,
+        formatId: fromFormatId,
+      };
     }
+    yield {
+      type: Instruction.convert,
+      relatedConvertPlanIndex: index,
+      fromFormatId: fromFormatId,
+      toFormatId: toFormatId,
+    };
+    yield {
+      type: Instruction.validate,
+      relatedConvertPlanIndex: index,
+      formatId: toFormatId,
+    };
+    index++;
+  }
+}
+
+function* iterEdges<T>(arr: Iterable<T>): Generator<[T, T]> {
+  const iterator = arr[Symbol.iterator]();
+  const first = iterator.next();
+  if (first.done) return;
+  let prev = first.value;
+  while (true) {
+    const iterResult = iterator.next();
+    if (iterResult.done) return;
+    const curr = iterResult.value;
+    yield [prev, curr];
+    prev = curr;
   }
 }

@@ -6,6 +6,9 @@
     "declaration": true,
     "target": "esnext",
     "module": "esnext",
-    "strict": true
-  }
+    "strict": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["test/**/*.test.ts"],
+  "files": ["src/index.ts"]
 }

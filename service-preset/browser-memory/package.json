@@ -15,9 +15,10 @@
     "@riiid/cabriolet-convert-planner": "workspace:convert-planner",
     "@riiid/cabriolet-hash-fns": "workspace:hash-fns",
     "@riiid/cabriolet-proto": "workspace:proto",
+    "@riiid/cabriolet-registry-impl-memory": "workspace:registry-impl/memory",
     "@riiid/cabriolet-schema": "workspace:schema",
     "@riiid/cabriolet-service": "workspace:service",
-    "@riiid/cabriolet-service-impl-memory": "workspace:service-impl/memory",
+    "@riiid/cabriolet-storage-impl-memory": "workspace:storage-impl/memory",
     "js-base64": "^3.7.2"
   },
   "devDependencies": {

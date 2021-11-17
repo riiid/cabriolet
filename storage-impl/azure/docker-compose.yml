@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    hostname: azurite
+    command: azurite-blob --blobHost 0.0.0.0 --loose
+    ports:
+      - "10000:10000"
